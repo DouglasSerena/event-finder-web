@@ -1,0 +1,50 @@
+<header class="dialog-header">
+  <div class="container-search">
+    <button mat-icon-button class="icon-back" mat-dialog-close>
+      <mat-icon>close</mat-icon>
+    </button>
+    <input
+      #inputRef
+      type="text"
+      class="input"
+      cdkFocusInitial
+      placeholder="Buscar por eventos"
+      (input)="search($any($event.target).value)"
+    />
+    <button mat-icon-button (click)="inputRef.focus()">
+      <mat-icon>search</mat-icon>
+    </button>
+  </div>
+
+  <ef-chip-list class="chip-scrollable-horizontal">
+    <ef-chip *ngFor="let category of categories">
+      <mat-icon class="chip-icon -left">{{ category.icon }}</mat-icon>
+      {{ category.description }}
+    </ef-chip>
+  </ef-chip-list>
+
+  <mat-divider></mat-divider>
+</header>
+
+<div mat-dialog-content class="dialog-menu-list">
+  <mat-selection-list [multiple]="false">
+    <ng-container *ngIf="events.length">
+      <mat-list-option
+        class="list-item"
+        [mat-dialog-close]="event"
+        *ngFor="let event of events"
+      >
+        <mat-icon mat-list-icon>search</mat-icon>
+        {{ event.name }}
+      </mat-list-option>
+    </ng-container>
+    <mat-list-item *ngIf="!events.length" class="list-item -empty">
+      <div class="item-empty">
+        <h4 class="title">Sem resultado</h4>
+        <p class="description">
+          Pesquise algo para conseguir achar algo diferente.
+        </p>
+      </div>
+    </mat-list-item>
+  </mat-selection-list>
+</div>
