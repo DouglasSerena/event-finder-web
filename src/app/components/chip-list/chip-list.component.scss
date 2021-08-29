@@ -1,0 +1,14 @@
+.chip-list {
+  display: flex;
+  align-items: center;
+  position: relative;
+  & > .chip-container {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    &::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+    }
+  }
+}

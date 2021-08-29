@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap-grid.min.css';
+@import './theme/index';
+@import './styles/index';
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  color: var(--color-text);
+  background-color: var(--color-background);
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+* {
+  box-sizing: border-box;
+}
+
+.mapboxgl-ctrl-bottom-right {
+  display: none;
+}
