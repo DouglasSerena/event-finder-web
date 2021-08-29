@@ -1,0 +1,81 @@
+@import '~@douglas-serena/ng-inputs-material/assets';
+@import '~@douglas-serena/ng-utils/assets/material';
+@import '~@douglas-serena/ng-utils/assets';
+
+.chip-icon {
+  width: 18px !important;
+  height: 18px !important;
+  font-size: 18px;
+
+  &.-left {
+    margin-right: 8px;
+  }
+  &.-right {
+    margin-left: 8px;
+  }
+}
+
+.mat-menu-content {
+  min-width: 150px;
+}
+
+.ng-icon-img {
+  transform: translateY(6.875px) !important;
+}
+
+// TOOLBAR
+mat-toolbar {
+  background-color: var(--color-background-dark) !important;
+}
+
+// INPUT
+@include createColorInputs(
+  'primary',
+  var(--color-primary),
+  var(--color-primary-light),
+  var(--color-danger),
+  var(--color-text),
+  var(--color-text-secondary),
+  var(--color-background-light)
+);
+@include createMap();
+
+// SPINNER
+@include createColorSpinner('primary', var(--color-primary));
+@include createColorSpinner('text', var(--color-text));
+
+// ICON
+@include createColorIcon('text', var(--color-text-button));
+@include createColorIcon('primary', var(--color-primary));
+@include createColorIcon('success', var(--color-success));
+@include createColorIcon('warning', var(--color-warning));
+@include createColorIcon('danger', var(--color-danger));
+@include createColorIcon('whats', var(--color-whats));
+
+// BUTTON
+@include createColorButton(
+  'primary',
+  var(--color-primary),
+  var(--color-text-button)
+);
+@include createColorButton(
+  'danger',
+  var(--color-danger),
+  var(--color-text-button)
+);
+
+// DIALOG
+@include createDialog('primary', var(--color-primary), var(--color-text));
+
+// SNACKBAR
+@include createColorSnackbar(
+  'success',
+  var(--color-success),
+  var(--color-text)
+);
+@include createColorSnackbar(
+  'warning',
+  var(--color-warning),
+  var(--color-text)
+);
+@include createColorSnackbar('danger', var(--color-danger), var(--color-text));
