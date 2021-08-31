@@ -8,8 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
-    "start:prod": "node server.js",
-    "deploy": "npm run build && npm run start:prod"
+    "start:prod": "node server.js"
   },
   "private": true,
   "dependencies": {
