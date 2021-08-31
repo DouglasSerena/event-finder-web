@@ -2,9 +2,9 @@ import { AfterViewInit, ViewChild } from '@angular/core';
 import { ElementRef } from '@angular/core';
 import { Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { handleTry, theme } from '@douglas-serena/utils';
+import { handleTry } from '@douglas-serena/utils';
 import { TranslateService } from '@ngx-translate/core';
-import mapboxgl from 'mapbox-gl';
+import { events } from 'src/app/mocks/events';
 import { MapsService } from './maps.service';
 
 @Component({
@@ -13,8 +13,6 @@ import { MapsService } from './maps.service';
   styleUrls: ['./map-event.component.scss'],
 })
 export class MapEventComponent implements AfterViewInit {
-  @ViewChild('eventMarketRef') eventMarketRef?: ElementRef<HTMLElement>;
-
   constructor(
     private mapsService: MapsService,
     private snackbarService: MatSnackBar,
@@ -25,11 +23,9 @@ export class MapEventComponent implements AfterViewInit {
     await this.mapsService.buildMap();
     await this.onMoveMyLocation();
 
-    // this.marker = new mapboxgl.Marker({
-    //   element: this.eventMarketRef?.nativeElement,
-    // })
-    //   .setLngLat([-50.0137984, -29.7369])
-    //   .addTo(this.map);
+    for (const event of events) {
+      this.mapsService.addMarker(event);
+    }
   }
 
   public async onMoveMyLocation(): Promise<void> {

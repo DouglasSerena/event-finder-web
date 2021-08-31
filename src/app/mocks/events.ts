@@ -13,8 +13,8 @@ export const events: IEvent[] = [
   {
     id: 2,
     name: 'Vingadores',
-    longitude: -29.732,
-    latitude: -50.0137924,
+    longitude: -29.74,
+    latitude: -50.01,
     category: categories[4],
     imagem: '/assets/images/event-default.jpg',
   },
@@ -31,7 +31,7 @@ export const events: IEvent[] = [
     name: 'Caminhada para show',
     longitude: -29.732,
     latitude: -50.0137874,
-    category: categories[2],
+    category: categories[1],
     imagem: '/assets/images/event-default.jpg',
   },
   {

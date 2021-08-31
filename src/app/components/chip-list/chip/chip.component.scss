@@ -1,22 +1,28 @@
-.standard-chip {
-  background-color: var(--color-background-light);
-  color: var(--color-text);
-
+.chip {
   margin: 4px;
-
-  transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
-  display: inline-flex;
-  padding: 7px 12px;
-  border-radius: 16px;
-  align-items: center;
+  height: 1px;
   cursor: default;
   min-height: 32px;
-  height: 1px;
-}
+  padding: 7px 12px;
+  align-items: center;
+  border-radius: 16px;
+  display: inline-flex;
+  transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
 
-.chip {
   position: relative;
   box-sizing: border-box;
   transform: translateZ(0);
   border: 1px solid var(--color-background-dark);
+
+  background-color: var(--color-background-light);
+  color: var(--color-text);
+
+  transition: 250ms;
+  &.-selected {
+    background-color: var(--color-primary);
+  }
+  &.-disabled {
+    opacity: 0.7;
+    background-color: var(--color-background-light);
+  }
 }
