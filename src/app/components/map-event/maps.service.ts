@@ -2,6 +2,7 @@ import mapboxgl from 'mapbox-gl';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { theme } from '@douglas-serena/utils';
+import { IEvent } from 'src/app/interfaces/event.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,7 @@ export class MapsService {
 
   zoom = 14;
   map!: mapboxgl.Map;
-  markers!: mapboxgl.Marker[];
+  markers: { [id: string]: mapboxgl.Marker } = {};
   center: mapboxgl.LngLatLike = [0, 0];
   style!: string;
 
@@ -49,7 +50,40 @@ export class MapsService {
     });
   }
 
-  public moveToMap(center: number[]) {
-    this.map?.flyTo({ center: center as any, zoom: this.zoom });
+  public addMarker(event: IEvent) {
+    const template = document.createElement('div');
+
+    template.innerHTML = `
+      <div class="map-marker -with-text">
+        <div class="material-icons">${event.category.icon}</div>
+        <p class="text">${event.name}</p>
+      </div>
+    `;
+
+    const popup = new mapboxgl.Popup({ closeButton: true }).setText('Test');
+
+    this.markers[event.id] = new mapboxgl.Marker(template)
+      .setLngLat([event.latitude, event.longitude])
+      .addTo(this.map)
+      .setPopup(popup)
+      .on('mouseup', () => {
+        console.log('click');
+      });
+  }
+
+  public removeMarker(ref: string | number) {
+    this.markers[ref!].remove();
+    delete this.markers[ref!];
+  }
+
+  public clearMarker() {
+    for (const ref in this.markers) {
+      this.markers[ref!].remove();
+    }
+    this.markers = {};
+  }
+
+  public moveToMap(center: number[], options?: mapboxgl.FlyToOptions) {
+    this.map?.flyTo({ center: center as any, zoom: this.zoom, ...options });
   }
 }

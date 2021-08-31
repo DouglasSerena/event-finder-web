@@ -40,8 +40,6 @@ export class MenuSearchComponent implements OnInit {
   ) {}
 
   async ngOnInit() {
-    this.openDialogMobile();
-
     await this.getCategory();
   }
 
@@ -71,7 +69,7 @@ export class MenuSearchComponent implements OnInit {
   }
 
   moveToEventMap(event: IEvent) {
-    this.mapService.moveToMap([event.latitude, event.longitude]);
+    this.mapService.moveToMap([event.latitude, event.longitude], { zoom: 17 });
   }
 
   openDialogUser(ref: IIcon, input?: HTMLInputElement, event?: Event) {
