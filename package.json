@@ -9,7 +9,7 @@
     "test": "ng test",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "start:prod": "node server.js",
-    "deploy": "yarn run build && yarn run start:prod"
+    "deploy": "npm run build && npm run start:prod"
   },
   "private": true,
   "dependencies": {
