@@ -14,6 +14,9 @@ import { environment } from 'src/environments/environment';
 import { IConfig as IConfigUtils } from '@douglas-serena/ng-utils/lib/config/interfaces/config.interface';
 import { IConfig as IConfigInputMaterial } from '@douglas-serena/ng-inputs-material/lib/types/interfaces/confing.interface';
 import { HttpClientModule } from '@angular/common/http';
+import ptBr from 'dayjs/locale/pt-BR';
+import dayjs from 'dayjs';
+dayjs.locale(ptBr);
 
 const configUtils: Partial<IConfigUtils> = {
   services: {
