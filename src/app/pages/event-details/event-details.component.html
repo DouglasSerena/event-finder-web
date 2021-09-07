@@ -1,0 +1,101 @@
+<header class="dialog-header" [class.-mobile]="isMobile">
+  <button mat-icon-button class="btn -close" mat-dialog-close>
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+
+  <swiper
+    class="slide"
+    [slidesPerView]="1"
+    [scrollbar]="{ draggable: true }"
+    [pagination]="{ clickable: true }"
+  >
+    <ng-template swiperSlide *ngFor="let image of event?.imagens">
+      <div class="item">
+        <img [src]="image" alt="" />
+      </div>
+    </ng-template>
+  </swiper>
+</header>
+
+<div mat-dialog-content class="dialog-content" [class.-mobile]="isMobile">
+  <header class="header">
+    <h5 class="date">
+      <span class="day">{{ event.date | date: "dd" }}</span>
+      <span class="month">{{ event.date | date: "MMM" }}</span>
+    </h5>
+    <div class="info">
+      <h2 class="title">{{ event.name }}</h2>
+      <p class="description">{{ event.description }}</p>
+    </div>
+  </header>
+
+  <mat-divider></mat-divider>
+
+  <div class="actions">
+    <a class="btn" mat-button>
+      <mat-icon>schedule</mat-icon>
+      Agendar
+    </a>
+    <a
+      class="btn"
+      mat-button
+      target="_black"
+      [href]="
+        'https://www.google.com/maps/dir/?api=1&destination=' +
+        concatCoords(event) +
+        '&travelmode=bicycling'
+      "
+    >
+      <mat-icon>directions</mat-icon>
+      Como chegar
+    </a>
+    <button class="btn" mat-button [matMenuTriggerFor]="menuSharedRef">
+      <mat-icon>share</mat-icon>
+      Compartilhar
+    </button>
+    <mat-menu #menuSharedRef>
+      <button mat-menu-item>
+        <mat-icon>share</mat-icon>
+        Facebook
+      </button>
+      <button mat-menu-item>
+        <mat-icon>whatsapp</mat-icon>
+        Whatsapp
+      </button>
+    </mat-menu>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <mat-list class="list">
+    <mat-list-item class="item -date">
+      <mat-icon mat-list-icon>schedule</mat-icon>
+      <h3 mat-line class="title">
+        {{ event.date | date: "MMM d, y, h:mm:ss a" }}
+      </h3>
+      <p mat-line class="description">{{ event.date | relativeTime }}</p>
+    </mat-list-item>
+
+    <mat-list-item class="item -address">
+      <mat-icon mat-list-icon>location_on</mat-icon>
+      <h3 mat-line class="title">
+        {{ event.address.street }} {{ event.address.number }}
+      </h3>
+      <p mat-line class="description">
+        {{ event.address.street }}, {{ event.address.number }} -
+        {{ event.address.city }} - {{ event.address.state }},
+        {{ event.address.zipCode }}
+      </p>
+    </mat-list-item>
+  </mat-list>
+
+  <iframe
+    class="maps"
+    [src]="
+      'https://maps.google.com/maps?q=' +
+        concatCoords(event) +
+        '&hl=pt-BR&z=14&amp;output=embed' | domSanitizer
+    "
+    frameborder="0"
+  ></iframe>
+</div>

@@ -1,0 +1,116 @@
+.dialog-header {
+  padding: 0;
+  height: 30vh !important;
+  &:not(.-mobile) {
+    position: relative;
+  }
+
+  & > .btn.-close {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+
+    background-color: var(--color-background-light);
+    z-index: 2;
+  }
+
+  & > .slide {
+    width: 100%;
+    height: 30vh;
+  }
+  & > .slide .item {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  & > .slide .item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+.dialog-content {
+  overflow: auto !important;
+  max-height: calc(70vh - 82px) !important;
+  &.-mobile {
+    margin-top: calc(30vh - 16px);
+  }
+  &:not(.-mobile) {
+    margin-top: 16px;
+  }
+
+  // HEADER
+  & > .header {
+    display: flex;
+    padding: 0 16px;
+  }
+  & > .header > .date {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    font-weight: bold;
+    margin-right: 20px;
+  }
+  & > .header > .date > .day {
+    display: flex;
+    align-items: center;
+
+    margin: 0;
+    height: 40px;
+    font-size: 40px;
+  }
+  & > .header > .date > .month {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 500;
+  }
+
+  & > .header > .info {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+  }
+  & > .header > .info > .title {
+    font-size: 25px;
+    margin: 0;
+  }
+  & > .header > .info > .description {
+    margin: 0;
+    opacity: 0.8;
+  }
+
+  // ACTIONS
+  & > .actions {
+    padding: 5px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  & > .actions > .btn {
+    color: var(--color-text) !important;
+  }
+  & > .actions > .btn > mat-icon {
+    margin-right: 5px;
+  }
+
+  // LISTA
+  & > .list .item .title {
+    font-weight: bold;
+  }
+  & > .list .item .description {
+    opacity: 0.8;
+  }
+
+  & > .maps {
+    width: 100%;
+    min-height: 250px;
+
+    margin-top: 20px;
+  }
+}

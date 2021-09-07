@@ -8,8 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
-    "start:prod": "node server.js",
-    "deploy": "yarn run build && yarn run start:prod"
+    "start:prod": "node server.js"
   },
   "private": true,
   "dependencies": {
@@ -32,6 +31,7 @@
     "express": "^4.17.1",
     "mapbox-gl": "^2.4.1",
     "rxjs": "~6.6.0",
+    "swiper": "^7.0.3",
     "tslib": "^2.1.0",
     "zone.js": "~0.11.4"
   },

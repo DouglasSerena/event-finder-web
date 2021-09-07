@@ -1,7 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~bootstrap/dist/css/bootstrap-grid.min.css';
+@import 'swiper/scss/navigation';
 @import './theme/index';
 @import './styles/index';
+@import 'swiper/scss';
 
 html,
 body {
@@ -9,10 +11,10 @@ body {
 }
 body {
   margin: 0;
-  color: #333; //var(--color-text);
-  background-color: #fff; // var(--color-background);
-  // color: var(--color-text);
-  // background-color: var(--color-background);
+  // color: #333; //var(--color-text);
+  // background-color: #fff; // var(--color-background);
+  color: var(--color-text);
+  background-color: var(--color-background);
   font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
 * {

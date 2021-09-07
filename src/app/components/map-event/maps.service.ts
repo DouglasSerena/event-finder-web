@@ -1,5 +1,5 @@
 import mapboxgl from 'mapbox-gl';
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { theme } from '@douglas-serena/utils';
 import { IEvent } from 'src/app/interfaces/event.interface';
@@ -8,6 +8,8 @@ import { IEvent } from 'src/app/interfaces/event.interface';
   providedIn: 'root',
 })
 export class MapsService {
+  onMarkerClick$ = new EventEmitter();
+
   URL_API_MAPBOX = 'https://api.mapbox.com';
   TOKEN!: string;
 
@@ -44,7 +46,7 @@ export class MapsService {
           (position) => {
             resolve([position.coords.longitude, position.coords.latitude]);
           },
-          (error) => reject(error),
+          (error) => reject(error)
         );
       }
     });
@@ -60,15 +62,18 @@ export class MapsService {
       </div>
     `;
 
-    const popup = new mapboxgl.Popup({ closeButton: true }).setText('Test');
+    // const popup = new mapboxgl.Popup({
+    //   closeButton: false,
+    //   closeOnClick: false,
+    // }).setText('Test');
 
     this.markers[event.id] = new mapboxgl.Marker(template)
       .setLngLat([event.latitude, event.longitude])
-      .addTo(this.map)
-      .setPopup(popup)
-      .on('mouseup', () => {
-        console.log('click');
-      });
+      .addTo(this.map);
+
+    template.addEventListener('mouseup', () => {
+      this.onMarkerClick$.emit(event);
+    });
   }
 
   public removeMarker(ref: string | number) {
