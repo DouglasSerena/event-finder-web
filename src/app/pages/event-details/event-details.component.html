@@ -94,7 +94,7 @@
     [src]="
       'https://maps.google.com/maps?q=' +
         concatCoords(event) +
-        '&hl=pt-BR&z=14&amp;output=embed' | domSanitizer
+        '&hl=pt-BR&z=14&amp;output=embed' | sanitizerUrl
     "
     frameborder="0"
   ></iframe>

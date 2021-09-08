@@ -1189,33 +1189,33 @@
   resolved "https://registry.yarnpkg.com/@discoveryjs/json-ext/-/json-ext-0.5.2.tgz#8f03a22a04de437254e8ce8cc84ba39689288752"
   integrity sha512-HyYEUDeIj5rRQU2Hk5HTB2uHsbRQpF70nvMhVzi+VJR0X+xNEhjPui4/kBf3VeH/wqD28PT4sVOm8qqLjBrSZg==
 
-"@douglas-serena/ng-inputs-material@^0.3.10":
-  version "0.3.10"
-  resolved "https://registry.yarnpkg.com/@douglas-serena/ng-inputs-material/-/ng-inputs-material-0.3.10.tgz#b3b84a89906a5c971681d88a19b4edbb6cc2dc85"
-  integrity sha512-ApQD5Ii2i3Zoot6VMUbRhZ14yvkSmu81e4KKwFvJPmSML/gBKokvm+8OTKsmau6MCj5afGpCJSLEOBGCiledJg==
+"@douglas-serena/ng-inputs-material@^0.3.15":
+  version "0.3.15"
+  resolved "https://registry.yarnpkg.com/@douglas-serena/ng-inputs-material/-/ng-inputs-material-0.3.15.tgz#4ed99307d21870c56310bbfd0964b0d9c19aa384"
+  integrity sha512-/pf+qSLmV8X90gVgrXv/LfvIfubUnAS5JbE1CMYNuF2YKrKrFt4PjAc7iOLL5mj8erDmOc6SJsewffw3UFclbw==
   dependencies:
-    "@douglas-serena/utils" "^0.2.7"
+    "@douglas-serena/utils" "^0.2.12"
     "@types/mapbox-gl" "^2.3.3"
-    dayjs "^1.10.6"
+    dayjs "^1.10.4"
     mapbox-gl "^2.4.1"
     mat-timepicker "^5.1.4"
     tslib "^2.1.0"
 
-"@douglas-serena/ng-utils@^0.3.9":
-  version "0.3.9"
-  resolved "https://registry.yarnpkg.com/@douglas-serena/ng-utils/-/ng-utils-0.3.9.tgz#6e9478a050de72d42c9c8a5bd3bd0b7d701b027e"
-  integrity sha512-Apc7XYJUdIfhWqGbW5tx94tIeRWRowL7/ZydCZXxVpkfigyQatpiRzvlxnrPlJO+CuDYTrVh3d5Mau+bFaTNyQ==
+"@douglas-serena/ng-utils@^0.3.13":
+  version "0.3.13"
+  resolved "https://registry.yarnpkg.com/@douglas-serena/ng-utils/-/ng-utils-0.3.13.tgz#1b6620317f689230adf284c902e3c86747f4117d"
+  integrity sha512-ndkg4UlfcC5ItBwZzpoy5ny2CN/dXVspoYDwH37gszzj/cVUFm6AYdIJPV1IGLHiOyxVkY5Ik2NZaUB2/6qsuw==
   dependencies:
-    "@douglas-serena/utils" "^0.2.7"
+    "@douglas-serena/utils" "^0.2.12"
     "@ngx-translate/core" "^13.0.0"
     dayjs "^1.10.4"
     jwt-decode "^3.1.2"
     tslib "^2.1.0"
 
-"@douglas-serena/utils@^0.2.7", "@douglas-serena/utils@^0.2.9":
-  version "0.2.9"
-  resolved "https://registry.yarnpkg.com/@douglas-serena/utils/-/utils-0.2.9.tgz#a0f1da518dfb5aad833687e86c7ce140385fd100"
-  integrity sha512-HWZ3kjfDl2pYI8l3NY+kqoJ+mJ7zCy/1nkTsnYuIWKRYZqjSBqmUBAFCL14xf2Jc4DX6PtYwY7KA3cgTD1D1eg==
+"@douglas-serena/utils@^0.2.12":
+  version "0.2.12"
+  resolved "https://registry.yarnpkg.com/@douglas-serena/utils/-/utils-0.2.12.tgz#1d917f46cbd236ebe43503ccb82ae39b13564403"
+  integrity sha512-eD1kdrZhIIppmvgMbD1AgXq+kMOgH7pkn7vQaafYERbylWHoLFfJb9GTKFVv/2klm9DoBfLgAuOWrFUCGKkVFA==
   dependencies:
     dayjs "^1.10.4"
     imask "^6.1.0"
@@ -3014,7 +3014,7 @@ date-format@^3.0.0:
   resolved "https://registry.yarnpkg.com/date-format/-/date-format-3.0.0.tgz#eb8780365c7d2b1511078fb491e6479780f3ad95"
   integrity sha512-eyTcpKOcamdhWJXj56DpQMo1ylSQpcGtGKXcU0Tb97+K56/CF5amAqqqNj0+KvA0iw2ynxtHWFsPDSClCxe48w==
 
-dayjs@^1.10.4, dayjs@^1.10.6:
+dayjs@^1.10.4:
   version "1.10.6"
   resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.10.6.tgz#288b2aa82f2d8418a6c9d4df5898c0737ad02a63"
   integrity sha512-AztC/IOW4L1Q41A86phW5Thhcrco3xuAA+YX/BLpLWWjRcTj5TOt/QImBLmCKlrF7u7k47arTnOyL6GnbG8Hvw==

@@ -11,7 +11,7 @@ const routes: Routes = [
     path: 'landing',
     loadChildren: () =>
       import('./pages/landing/landing.module').then(
-        (landing) => landing.LandingModule,
+        (landing) => landing.LandingModule
       ),
   },
 ];
@@ -19,7 +19,7 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
     initialNavigation: 'enabled'
-})],
+  })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
