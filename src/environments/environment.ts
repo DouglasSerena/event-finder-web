@@ -4,6 +4,7 @@
 
 export const environment = {
   PRODUCTION: false,
+  URL_API: 'http://localhost:3000/api',
   TOKEN_MAPBOX:
     'pk.eyJ1IjoiZG91Z2xhc3NlcmVuYSIsImEiOiJja2VrMmR6bXMxc3czMnltejIzbXh5eHIwIn0.uUxqAx39JExJ__-KxxhEyQ',
 };

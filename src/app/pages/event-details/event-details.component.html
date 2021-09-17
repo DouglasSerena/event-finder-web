@@ -9,7 +9,7 @@
     [scrollbar]="{ draggable: true }"
     [pagination]="{ clickable: true }"
   >
-    <ng-template swiperSlide *ngFor="let image of event?.imagens">
+    <ng-template swiperSlide *ngFor="let image of event?.images">
       <div class="item">
         <img [src]="image" alt="" />
       </div>
@@ -79,14 +79,12 @@
     <mat-list-item class="item -address">
       <mat-icon mat-list-icon>location_on</mat-icon>
       <h3 mat-line class="title">
-        {{ event.address.street }} {{ event.address.number }}
+        {{ clearAddress(event.address) }}
       </h3>
       <p mat-line class="description">
-        {{ event.address.street }}, {{ event.address.number }} -
-        {{ event.address.city }} - {{ event.address.state }},
-        {{ event.address.zipCode }}
-      </p>
-    </mat-list-item>
+        {{ event.address }}
+      </p></mat-list-item
+    >
   </mat-list>
 
   <iframe

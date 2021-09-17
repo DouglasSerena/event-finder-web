@@ -57,7 +57,7 @@ export class MapsService {
 
     template.innerHTML = `
       <div class="map-marker -with-text">
-        <div class="material-icons">${event.category.icon}</div>
+        <div class="material-icons">${event.icon || 'home'}</div>
         <p class="text">${event.name}</p>
       </div>
     `;
@@ -67,7 +67,7 @@ export class MapsService {
     //   closeOnClick: false,
     // }).setText('Test');
 
-    this.markers[event.id] = new mapboxgl.Marker(template)
+    this.markers[event._id] = new mapboxgl.Marker(template)
       .setLngLat([event.latitude, event.longitude])
       .addTo(this.map);
 

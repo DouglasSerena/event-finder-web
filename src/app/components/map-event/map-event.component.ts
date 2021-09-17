@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { handleTry } from '@douglas-serena/utils';
 import { TranslateService } from '@ngx-translate/core';
-import { events } from 'src/app/mocks/events';
+import { EventService } from 'src/app/services/event.service';
 import { MapsService } from './maps.service';
 
 @Component({
@@ -12,24 +12,27 @@ import { MapsService } from './maps.service';
   styleUrls: ['./map-event.component.scss'],
 })
 export class MapEventComponent implements AfterViewInit {
-  @Output() markerClick!: EventEmitter<any>
+  @Output() markerClick!: EventEmitter<any>;
 
   constructor(
     private mapsService: MapsService,
+    private eventService: EventService,
     private snackbarService: MatSnackBar,
-    private translateService: TranslateService,
+    private translateService: TranslateService
   ) {
-    this.markerClick = this.mapsService.onMarkerClick$
-    this.markerClick.subscribe(console.log)
+    this.markerClick = this.mapsService.onMarkerClick$;
+    this.markerClick.subscribe(console.log);
   }
 
   async ngAfterViewInit(): Promise<void> {
     await this.mapsService.buildMap();
     await this.onMoveMyLocation();
 
-
-    for (const event of events) {
-      this.mapsService.addMarker(event);
+    const [data] = await handleTry(this.eventService.getAll());
+    if (data) {
+      for (const event of data.data) {
+        this.mapsService.addMarker(event);
+      }
     }
   }
 
@@ -39,7 +42,7 @@ export class MapEventComponent implements AfterViewInit {
       this.mapsService.moveToMap(data);
     } else {
       const [message] = await handleTry(
-        this.translateService.get('map.message.error.geolocation'),
+        this.translateService.get('map.message.error.geolocation')
       );
 
       this.snackbarService.open(message, '', {

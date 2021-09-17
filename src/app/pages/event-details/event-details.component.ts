@@ -19,12 +19,16 @@ export class EventDetailsComponent implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public event: IEvent,
-    private screenPointsService: ScreenPointsService,
+    private screenPointsService: ScreenPointsService
   ) {}
 
   ngOnInit() {}
 
   concatCoords(event: IEvent) {
     return `${event.longitude},${event.latitude}`;
+  }
+
+  clearAddress(address: string) {
+    return address.replace(/-.*/g, '');
   }
 }

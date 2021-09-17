@@ -7,21 +7,22 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   GuardModule,
   NgTranslateModule,
-  NgUtilsModule,
+  NgUtilsConfig,
 } from '@douglas-serena/ng-utils';
 import { HttpClientModule } from '@angular/common/http';
 import ptBr from 'dayjs/locale/pt-BR';
 import dayjs from 'dayjs';
-import { NgInputsMaterial } from '@douglas-serena/ng-inputs-material';
+import { NgInputMaterialConfig } from '@douglas-serena/ng-inputs-material';
 import { environment } from 'src/environments/environment';
 dayjs.locale(ptBr);
 
-NgUtilsModule.forRoot({
+NgUtilsConfig.set({
   services: {
+    http: { apiUrl: environment.URL_API },
     translate: { language: { default: 'pt-BR' } },
   },
 });
-NgInputsMaterial.forRoot({
+NgInputMaterialConfig.set({
   fields: {
     map: { keyMapBox: environment.TOKEN_MAPBOX },
   },
@@ -32,10 +33,8 @@ NgInputsMaterial.forRoot({
   imports: [
     GuardModule,
     RouterModule,
-    NgUtilsModule,
     AppRoutingModule,
     HttpClientModule,
-    NgInputsMaterial,
     NgTranslateModule,
     BrowserAnimationsModule,
   ],

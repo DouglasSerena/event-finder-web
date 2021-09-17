@@ -1,19 +1,12 @@
-import { ICategory } from './category.interface';
-
 export interface IEvent {
-  id: string | number;
+  _id: string | number;
   name: string;
   date: string;
+  icon: string;
   description: string;
-  imagens: string[];
+  images: string[];
   latitude: number;
   longitude: number;
-  category: ICategory;
-  address: {
-    street: string;
-    number: string;
-    city: string;
-    state: string;
-    zipCode: string;
-  };
+  categoriesId: string[];
+  address: string;
 }

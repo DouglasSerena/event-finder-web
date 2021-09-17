@@ -1,6 +1,6 @@
 <div class="menu-container">
+  <!-- keyValue="" -->
   <ng-autocomplete
-    keyValue=""
     keyLabel="name"
     [options]="events"
     [disabled]="isMobile"
@@ -9,7 +9,7 @@
     (click)="openDialogMobile()"
     (valueChange)="search($event)"
     placeholder="Buscar por eventos"
-    (onOptionSelect)="onOptionSelect($event.value)"
+    (optionSelect)="optionSelect($event.value)"
     [icons]="{
       prefix: { icon: 'search' },
       suffix: {
@@ -22,7 +22,7 @@
   <ef-chip-list class="chip-scrollable-horizontal">
     <ef-chip *ngFor="let category of categories">
       <mat-icon class="chip-icon -left">{{ category.icon }}</mat-icon>
-      {{ category.description }}
+      {{ category.name }}
     </ef-chip>
   </ef-chip-list>
 </div>

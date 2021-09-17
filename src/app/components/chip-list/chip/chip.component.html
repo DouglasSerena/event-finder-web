@@ -4,7 +4,7 @@
   (click)="onSelected()"
   [class.-disabled]="disabled"
   [class.-selected]="selected && !disabledSelected"
-  [matRippleDisabled]="disabled || disabledSelected"
 >
+  <!-- [matRippleDisabled]="disabled || disabledSelected" -->
   <ng-content></ng-content>
 </div>

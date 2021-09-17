@@ -1,31 +1,31 @@
 import { Injectable } from '@angular/core';
-import { contains } from '@douglas-serena/utils';
-import { Observable, of } from 'rxjs';
+import { HttpService } from '@douglas-serena/ng-utils';
+import { Observable } from 'rxjs';
 import { IEvent } from '../interfaces/event.interface';
 import { IHttpResponse } from '../interfaces/http-response.interface';
-import { events } from '../mocks/events';
 
 @Injectable({
   providedIn: 'root',
 })
 export class EventService {
-  constructor() {}
+  constructor(private httpService: HttpService) {}
 
   search(
     text: string,
-    categoriesId?: string[] | number[],
+    categoriesId?: string[] | number[]
   ): Observable<IHttpResponse<IEvent[]>> {
-    const _events = events.filter((event) => {
-      const match = contains(event.name, text);
-      if (categoriesId && match) {
-        return (categoriesId as any).includes(event.category.id as any);
-      }
-      return match;
+    return this.httpService.get('/event/search', {
+      params: {
+        query: text,
+      },
     });
-    return of({ data: _events } as IHttpResponse);
   }
 
-  get(): Observable<IHttpResponse<IEvent[]>> {
-    return of({ data: events } as IHttpResponse);
+  getAll(): Observable<IHttpResponse<IEvent[]>> {
+    return this.httpService.get('/event');
+  }
+
+  getById(id: string): Observable<IHttpResponse<IEvent>> {
+    return this.httpService.get('/event', id);
   }
 }

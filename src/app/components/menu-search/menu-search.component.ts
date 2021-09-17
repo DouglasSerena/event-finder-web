@@ -1,13 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { IIcon } from '@douglas-serena/ng-inputs-material/lib/types/interfaces/confing.interface';
+import { IIcon } from '@douglas-serena/ng-inputs-material';
 import { dialogConfig, ScreenPointsService } from '@douglas-serena/ng-utils';
-import {
-  debounce,
-  handleTry,
-  isFill,
-  stackCallback,
-} from '@douglas-serena/utils';
+import { debounce, handleTry } from '@douglas-serena/utils';
 import { ICategory } from 'src/app/interfaces/category.interface';
 import { IEvent } from 'src/app/interfaces/event.interface';
 import { CategoryService } from 'src/app/services/category.service';
@@ -36,7 +31,7 @@ export class MenuSearchComponent implements OnInit {
     private dialogService: MatDialog,
     private eventService: EventService,
     private categoryService: CategoryService,
-    private screenPointsService: ScreenPointsService,
+    private screenPointsService: ScreenPointsService
   ) {}
 
   async ngOnInit() {
@@ -50,16 +45,13 @@ export class MenuSearchComponent implements OnInit {
     }
   }
 
-  onOptionSelect(event: IEvent) {
+  optionSelect(event: IEvent) {
     this.moveToEventMap(event);
-    stackCallback(() => {
-      this.inputSearch = `${event.name}`;
-    });
   }
 
   search(value: string) {
     this.debounce.run(async () => {
-      if (isFill(value)) {
+      if (value.length) {
         const [data, error] = await handleTry(this.eventService.search(value));
         if (!error) {
           this.events = data.data;
@@ -80,7 +72,7 @@ export class MenuSearchComponent implements OnInit {
     if (this.isMobile) {
       const dialogRef = this.dialogService.open(
         MenuSearchMobileComponent,
-        dialogConfig('mobile'),
+        dialogConfig('mobile')
       );
       dialogRef.afterClosed().subscribe((res) => {
         if (res) {
