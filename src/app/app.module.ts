@@ -10,10 +10,10 @@ import {
   NgUtilsConfig,
 } from '@douglas-serena/ng-utils';
 import { HttpClientModule } from '@angular/common/http';
-import ptBr from 'dayjs/locale/pt-BR';
-import dayjs from 'dayjs';
 import { NgInputMaterialConfig } from '@douglas-serena/ng-inputs-material';
 import { environment } from 'src/environments/environment';
+import ptBr from 'dayjs/locale/pt-BR';
+import dayjs from 'dayjs';
 dayjs.locale(ptBr);
 
 NgUtilsConfig.set({
