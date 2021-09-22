@@ -11,23 +11,23 @@
 
   cursor: pointer;
 
-  color: var(--color-text);
+  color: rgb(var(--color-text));
   box-shadow: 2px 2px 10px #3333;
-  background-color: var(--color-background);
+  background-color: rgb(var(--color-background));
   & > .material-icons {
     font-size: 18px;
 
     padding: 3px;
     border-radius: 50%;
 
-    color: var(--color-text);
-    background-color: var(--color-primary);
+    color: rgb(var(--color-text));
+    background-color: rgb(var(--color-primary));
   }
   & > .text {
     margin: 0;
   }
   &::after {
-    content: '';
+    content: "";
     display: flex;
 
     left: 50%;
@@ -36,7 +36,7 @@
     transform: translateX(-50%);
 
     border: 7px solid transparent;
-    border-top-color: var(--color-background);
+    border-top-color: rgb(var(--color-background));
   }
   &.-with-text > .material-icons {
     margin-right: 5px;

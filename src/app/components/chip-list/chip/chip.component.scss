@@ -13,17 +13,17 @@
   position: relative;
   box-sizing: border-box;
   transform: translateZ(0);
-  border: 1px solid var(--color-background-dark);
+  border: 1px solid rgb(var(--color-background-dark));
 
-  background-color: var(--color-background-light);
-  color: var(--color-text);
+  background-color: rgb(var(--color-background-light));
+  color: rgb(var(--color-text));
 
   transition: 250ms;
   &.-selected {
-    background-color: var(--color-primary);
+    background-color: rgb(var(--color-primary));
   }
   &.-disabled {
     opacity: 0.7;
-    background-color: var(--color-background-light);
+    background-color: rgb(var(--color-background-light));
   }
 }

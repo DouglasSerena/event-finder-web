@@ -10,7 +10,7 @@
     left: 10px;
     top: 10px;
 
-    background-color: var(--color-background-light);
+    background-color: rgb(var(--color-background-light));
     z-index: 2;
   }
 
@@ -93,7 +93,7 @@
     justify-content: center;
   }
   & > .actions > .btn {
-    color: var(--color-text) !important;
+    color: rgb(var(--color-text) !important);
   }
   & > .actions > .btn > mat-icon {
     margin-right: 5px;
