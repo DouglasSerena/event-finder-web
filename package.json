@@ -28,7 +28,6 @@
     "@ngx-translate/core": "^13.0.0",
     "@types/mapbox-gl": "^2.4.0",
     "bootstrap": "^5.1.1",
-    "dayjs": "^1.10.7",
     "express": "^4.17.1",
     "mapbox-gl": "^2.4.1",
     "rxjs": "~6.6.0",
