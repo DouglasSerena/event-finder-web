@@ -16,13 +16,14 @@ import { MenuSearchMobileComponent } from './menu-search-mobile/menu-search-mobi
   styleUrls: ['./menu-search.component.scss'],
 })
 export class MenuSearchComponent implements OnInit {
-  categories: ICategory[] = [];
-  events: IEvent[] = [];
-  debounce = debounce();
+  public categories: ICategory[] = [];
+  public events: IEvent[] = [];
+  public loading = false;
+  public debounce = debounce(500);
 
-  inputSearch = '';
+  public inputSearch = '';
 
-  get isMobile() {
+  public get isMobile() {
     return this.screenPointsService.isMobile;
   }
 
@@ -34,41 +35,45 @@ export class MenuSearchComponent implements OnInit {
     private screenPointsService: ScreenPointsService
   ) {}
 
-  async ngOnInit() {
+  public async ngOnInit() {
     await this.getCategory();
   }
 
-  async getCategory() {
+  public async getCategory() {
     const [data, error] = await handleTry(this.categoryService.get());
     if (!error) {
       this.categories = data.data;
     }
   }
 
-  optionSelect(event: IEvent) {
+  public optionSelect(event: IEvent) {
     this.moveToEventMap(event);
   }
 
-  search(value: string) {
+  public search(value: string) {
+    this.loading = true;
     this.debounce.run(async () => {
       if (value.length) {
         const [data, error] = await handleTry(this.eventService.search(value));
         if (!error) {
           this.events = data.data;
         }
+      } else {
+        this.events = [];
       }
+      this.loading = false;
     });
   }
 
-  moveToEventMap(event: IEvent) {
+  public moveToEventMap(event: IEvent) {
     this.mapService.moveToMap([event.latitude, event.longitude], { zoom: 17 });
   }
 
-  openDialogUser(ref: IIcon, input?: HTMLInputElement, event?: Event) {
+  public openDialogUser(ref: IIcon, input?: HTMLInputElement, event?: Event) {
     event?.stopPropagation();
   }
 
-  openDialogMobile() {
+  public openDialogMobile() {
     if (this.isMobile) {
       const dialogRef = this.dialogService.open(
         MenuSearchMobileComponent,

@@ -57,7 +57,7 @@ export class MapsService {
 
     template.innerHTML = `
       <div class="map-marker -with-text">
-        <div class="material-icons">${event.icon || 'home'}</div>
+        <div class="material-icons">${event.icon || 'place'}</div>
         <p class="text">${event.name}</p>
       </div>
     `;

@@ -1,8 +1,11 @@
 <div class="menu-container">
   <!-- keyValue="" -->
   <ng-autocomplete
+    keyIcon="icon"
+    keyLabel="name"
     keyLabel="name"
     [options]="events"
+    [loading]="loading"
     [disabled]="isMobile"
     [(value)]="inputSearch"
     [removeMarginBottom]="true"

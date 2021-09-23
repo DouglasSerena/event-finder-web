@@ -35,6 +35,14 @@
     padding: 0;
   }
 
+  & .list-item {
+    white-space: nowrap;
+    width: 100%;
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+  }
+
   & .list-item.-empty {
     height: 70px;
   }

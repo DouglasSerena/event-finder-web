@@ -34,7 +34,7 @@
         [mat-dialog-close]="event"
         *ngFor="let event of events"
       >
-        <mat-icon mat-list-icon>search</mat-icon>
+        <mat-icon mat-list-icon>{{ event.icon || "search" }}</mat-icon>
         {{ event.name }}
       </mat-list-option>
     </ng-container>
