@@ -12,8 +12,8 @@ jobs:
       - uses: actions/checkout@v1
       - uses: akhileshns/heroku-deploy@v3.12.12
         with:
-          heroku_api_key: f40df26a-9918-4256-ae12-301e9331b3cf
           heroku_app_name: finderevent-web
-          heroku_email: douglas222serena@gmail.com
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          heroku_email: ${{ secrets.HEROKU_EMAIL }}
 
 
