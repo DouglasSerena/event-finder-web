@@ -3,6 +3,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ScreenPointsService } from '@douglas-serena/ng-utils';
 import dayjs from 'dayjs';
 import { IEvent } from 'src/app/interfaces/event.interface';
+import { environment } from 'src/environments/environment';
 import SwiperCore, { Pagination } from 'swiper';
 
 // install Swiper modules
@@ -24,6 +25,17 @@ export class EventDetailsComponent implements OnInit {
   ) {}
 
   public ngOnInit() {}
+
+  public onShareFecebook() {
+    window.open(
+      `https://www.facebook.com/sharer/sharer.php?u=${environment.URL_APP}&t=${
+        this.event.name
+      } dia ${dayjs(this.event.date).format('DD/MM')} as ${dayjs(
+        this.event.date
+      ).format('hh:mm')}`,
+      '_blank'
+    );
+  }
 
   public onShareWhatsapp() {
     window.open(
