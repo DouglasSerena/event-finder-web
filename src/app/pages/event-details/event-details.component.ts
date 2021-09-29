@@ -26,7 +26,7 @@ export class EventDetailsComponent implements OnInit {
 
   public ngOnInit() {}
 
-  public onShareFecebook() {
+  public onShareFacebook() {
     window.open(
       `https://www.facebook.com/sharer/sharer.php?u=${environment.URL_APP}&t=${
         this.event.name
