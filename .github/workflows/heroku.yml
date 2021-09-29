@@ -1,0 +1,23 @@
+name: Deploy to Heroku
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Login heroku
+      env:
+        HEROKU_API_KEY: f40df26a-9918-4256-ae12-301e9331b3cf
+      run: heroku login
+
+    - name: Build and push
+      env:
+        HEROKU_API_KEY: f40df26a-9918-4256-ae12-301e9331b3cf
+      run: git push heroku main
+
+
