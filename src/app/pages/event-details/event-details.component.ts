@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ScreenPointsService } from '@douglas-serena/ng-utils';
+import dayjs from 'dayjs';
 import { IEvent } from 'src/app/interfaces/event.interface';
 import SwiperCore, { Pagination } from 'swiper';
 
@@ -13,7 +14,7 @@ SwiperCore.use([Pagination]);
   styleUrls: ['./event-details.component.scss'],
 })
 export class EventDetailsComponent implements OnInit {
-  get isMobile() {
+  public get isMobile() {
     return this.screenPointsService.isMobile;
   }
 
@@ -22,13 +23,24 @@ export class EventDetailsComponent implements OnInit {
     private screenPointsService: ScreenPointsService
   ) {}
 
-  ngOnInit() {}
+  public ngOnInit() {}
 
-  concatCoords(event: IEvent) {
+  public onShareWhatsapp() {
+    window.open(
+      `https://api.whatsapp.com/send?text=${this.event.name} dia ${dayjs(
+        this.event.date
+      ).format('DD/MM')} as ${dayjs(this.event.date).format(
+        'hh:mm'
+      )} | ${encodeURI(location.href)}`,
+      '_blank'
+    );
+  }
+
+  public concatCoords(event: IEvent) {
     return `${event.longitude},${event.latitude}`;
   }
 
-  clearAddress(address: string) {
+  public clearAddress(address: string) {
     return address.replace(/-.*/g, '');
   }
 }

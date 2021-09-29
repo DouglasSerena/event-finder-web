@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  AfterContentInit,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { IIcon } from '@douglas-serena/ng-inputs-material';
 import { dialogConfig, ScreenPointsService } from '@douglas-serena/ng-utils';
@@ -15,7 +20,7 @@ import { MenuSearchMobileComponent } from './menu-search-mobile/menu-search-mobi
   templateUrl: './menu-search.component.html',
   styleUrls: ['./menu-search.component.scss'],
 })
-export class MenuSearchComponent implements OnInit {
+export class MenuSearchComponent implements OnInit, AfterContentInit {
   public categories: ICategory[] = [];
   public events: IEvent[] = [];
   public loading = false;
@@ -32,11 +37,16 @@ export class MenuSearchComponent implements OnInit {
     private dialogService: MatDialog,
     private eventService: EventService,
     private categoryService: CategoryService,
+    private changeDetectorRef: ChangeDetectorRef,
     private screenPointsService: ScreenPointsService
   ) {}
 
   public async ngOnInit() {
     await this.getCategory();
+  }
+
+  public ngAfterContentInit() {
+    this.changeDetectorRef.detectChanges();
   }
 
   public async getCategory() {

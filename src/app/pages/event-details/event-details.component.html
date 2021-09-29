@@ -55,10 +55,10 @@
     </button>
     <mat-menu #menuSharedRef>
       <button mat-menu-item>
-        <mat-icon>share</mat-icon>
+        <mat-icon>facebook</mat-icon>
         Facebook
       </button>
-      <button mat-menu-item>
+      <button mat-menu-item (click)="onShareWhatsapp()">
         <mat-icon>whatsapp</mat-icon>
         Whatsapp
       </button>
