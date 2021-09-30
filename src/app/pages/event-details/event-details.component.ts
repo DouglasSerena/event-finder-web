@@ -28,7 +28,7 @@ export class EventDetailsComponent implements OnInit {
 
   public onShareFacebook() {
     window.open(
-      `https://www.facebook.com/sharer/sharer.php?u=${environment.URL_APP}&t=${
+      `https://www.facebook.com/sharer/sharer.php?u=${environment.URL_APP+location.search}&t=${
         this.event.name
       } dia ${dayjs(this.event.date).format('DD/MM')} as ${dayjs(
         this.event.date
