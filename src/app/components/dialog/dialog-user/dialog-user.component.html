@@ -1,0 +1,37 @@
+<header class="user-header">
+  <img class="avatar" [src]="user.avatar" alt="" />
+  <div class="info">
+    <h4 class="username">{{ user.username }}</h4>
+    <p class="email">{{ user.email }}</p>
+  </div>
+</header>
+
+<mat-dialog-content mat-dialog-content class="user-content">
+  <mat-divider></mat-divider>
+
+  <mat-list>
+    <!-- ADICIONAR EVENTO -->
+    <mat-list-item matRipple role="button">
+      <mat-icon mat-list-icon>add_location</mat-icon>
+      Adicionar evento
+    </mat-list-item>
+
+    <!-- LISTAR EVENTOS -->
+    <mat-list-item matRipple role="button">
+      <mat-icon mat-list-icon>event</mat-icon>
+      Seus eventos
+    </mat-list-item>
+
+    <!-- SAIR -->
+    <mat-list-item matRipple role="button" (click)="logout()">
+      <mat-icon mat-list-icon>logout</mat-icon>
+      Sair
+    </mat-list-item>
+  </mat-list>
+
+  <mat-divider></mat-divider>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close color="primary">Fechar</button>
+</mat-dialog-actions>

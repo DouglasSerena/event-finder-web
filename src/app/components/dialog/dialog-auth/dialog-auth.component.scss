@@ -1,0 +1,9 @@
+.auth-content {
+  & > button {
+    width: 100%;
+    margin-bottom: 5px;
+  }
+  & > button mat-icon {
+    margin-right: 5px;
+  }
+}

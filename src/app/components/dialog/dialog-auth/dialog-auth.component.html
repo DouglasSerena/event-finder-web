@@ -1,0 +1,25 @@
+<header class="auth-header">
+  <h2>Opps!!!</h2>
+</header>
+
+<mat-dialog-content>
+  <div class="auth-content">
+    <p>
+      Parece que você não está logado, por favor entre com sua conta do google
+      ou facebook para conseguir acessar o menu de controle.
+    </p>
+
+    <button (click)="onAuthGoogle()" mat-raised-button>
+      <mat-icon svgIcon="google"></mat-icon>
+      Entrar com o Google
+    </button>
+    <button (click)="onAuthFacebook()" mat-raised-button color="facebook">
+      <mat-icon>facebook</mat-icon>
+      Entrar com o Facebook
+    </button>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close color="primary">Fechar</button>
+</mat-dialog-actions>

@@ -1,0 +1,32 @@
+.user-header {
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+
+  & > .avatar {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+    object-position: center;
+  }
+
+  & > .info > .username {
+    margin-bottom: 0;
+  }
+  & > .info > .email {
+    margin-bottom: 0;
+    opacity: 0.8;
+  }
+}
+
+.user-content {
+  & > mat-list > mat-list-item mat-icon {
+    opacity: 0.6;
+    margin-right: 10px;
+  }
+}

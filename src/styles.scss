@@ -19,6 +19,26 @@ body {
 
 * {
   box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  &::-webkit-scrollbar {
+    height: 10px;
+    width: 10px;
+    background: transparent;
+  }
+  &::-webkit-scrollbar-corner {
+    display: none;
+  }
+  &::-webkit-scrollbar-thumb {
+    transition: 100ms;
+    background: rgba(var(--color-scroll));
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgba(var(--color-scroll-hover));
+  }
+  &::-webkit-scrollbar-thumb:active {
+    background: rgba(var(--color-scroll-active));
+  }
 }
 
 .mapboxgl-ctrl-bottom-right {

@@ -16,7 +16,7 @@
     [icons]="{
       prefix: { icon: 'search' },
       suffix: {
-        image: '/assets/images/user-default.png',
+        image: (user$ | async)?.avatar,
         onClick: openDialogUser.bind(this)
       }
     }"

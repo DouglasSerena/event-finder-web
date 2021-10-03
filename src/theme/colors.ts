@@ -7,6 +7,13 @@ export const colors: ITheme = {
       light: '94, 184, 255',
       dark: '0, 91, 159',
     },
+    scroll: {
+      default: '90, 99, 117, 0.5',
+      hover: '90, 99, 117, 0.65',
+      active: '90, 99, 117, 0.8',
+    },
+    facebook: '66 103 178',
+    google: '66, 133, 244',
     danger: '244, 67, 54',
     success: '76, 175, 80',
     warning: '255, 152, 0',

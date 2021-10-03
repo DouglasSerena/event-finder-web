@@ -1,0 +1,17 @@
+.dialog-user-menu {
+  & > mat-dialog-container {
+    padding: 0;
+  }
+
+  header {
+    padding: 12px;
+  }
+  mat-dialog-content {
+    padding: 0;
+    margin: 0;
+  }
+  mat-dialog-actions {
+    margin: 0;
+    padding: 0 16px;
+  }
+}

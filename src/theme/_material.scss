@@ -43,6 +43,7 @@ mat-toolbar {
 // ICON
 @include createColorIcon("text", rgb(var(--color-text-button)));
 @include createColorIcon("primary", rgb(var(--color-primary)));
+@include createColorIcon("facebook", rgb(var(--color-facebook)));
 @include createColorIcon("success", rgb(var(--color-success)));
 @include createColorIcon("warning", rgb(var(--color-warning)));
 @include createColorIcon("danger", rgb(var(--color-danger)));
@@ -57,6 +58,16 @@ mat-toolbar {
 @include createColorButton(
   "danger",
   rgb(var(--color-danger)),
+  rgb(var(--color-text-button))
+);
+@include createColorButton(
+  "facebook",
+  rgb(var(--color-facebook)),
+  rgb(var(--color-text-button))
+);
+@include createColorButton(
+  "google",
+  rgb(var(--color-google)),
   rgb(var(--color-text-button))
 );
 

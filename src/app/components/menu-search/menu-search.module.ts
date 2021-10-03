@@ -9,6 +9,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
+import { DialogAuthModule } from '../dialog/dialog-auth/dialog-auth.module';
+import { DialogUserModule } from '../dialog/dialog-user/dialog-user.module';
 
 @NgModule({
   imports: [
@@ -19,6 +21,8 @@ import { MatListModule } from '@angular/material/list';
     MatDialogModule,
     MatButtonModule,
     MatDividerModule,
+    DialogAuthModule,
+    DialogUserModule,
     AutocompleteModule,
   ],
   declarations: [MenuSearchComponent, MenuSearchMobileComponent],

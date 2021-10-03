@@ -14,12 +14,21 @@ const routes: Routes = [
         (landing) => landing.LandingModule
       ),
   },
+  {
+    path: 'auth/confirm',
+    loadChildren: () =>
+      import('./pages/auth/auth-confirm/auth-confirm.module').then(
+        (authConfirm) => authConfirm.AuthConfirmModule
+      ),
+  },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {
-    initialNavigation: 'enabled'
-  })],
+  imports: [
+    RouterModule.forRoot(routes, {
+      initialNavigation: 'enabled',
+    }),
+  ],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRouting {}

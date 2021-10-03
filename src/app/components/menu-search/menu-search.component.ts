@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import {
   AfterContentInit,
   ChangeDetectorRef,
@@ -5,13 +6,27 @@ import {
   OnInit,
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import {
+  ActivatedRoute,
+  ActivatedRouteSnapshot,
+  Router,
+} from '@angular/router';
 import { IIcon } from '@douglas-serena/ng-inputs-material';
-import { dialogConfig, ScreenPointsService } from '@douglas-serena/ng-utils';
+import {
+  AuthJwtService,
+  dialogConfig,
+  ScreenPointsService,
+} from '@douglas-serena/ng-utils';
 import { debounce, handleTry } from '@douglas-serena/utils';
+import { Observable } from 'rxjs';
 import { ICategory } from 'src/app/interfaces/category.interface';
 import { IEvent } from 'src/app/interfaces/event.interface';
 import { CategoryService } from 'src/app/services/category.service';
 import { EventService } from 'src/app/services/event.service';
+import { IUser } from 'src/app/stores/user/interfaces/user.interface';
+import { UserService } from 'src/app/stores/user/user.service';
+import { DialogAuthComponent } from '../dialog/dialog-auth/dialog-auth.component';
+import { DialogUserComponent } from '../dialog/dialog-user/dialog-user.component';
 import { MapsService } from '../map-event/maps.service';
 import { MenuSearchMobileComponent } from './menu-search-mobile/menu-search-mobile.component';
 
@@ -27,21 +42,35 @@ export class MenuSearchComponent implements OnInit, AfterContentInit {
   public debounce = debounce(500);
 
   public inputSearch = '';
+  public user$: Observable<IUser>;
 
   public get isMobile() {
     return this.screenPointsService.isMobile;
   }
 
   constructor(
+    private location: Location,
+    private userService: UserService,
     private mapService: MapsService,
     private dialogService: MatDialog,
     private eventService: EventService,
+    private activatedRoute: ActivatedRoute,
     private categoryService: CategoryService,
     private changeDetectorRef: ChangeDetectorRef,
     private screenPointsService: ScreenPointsService
-  ) {}
+  ) {
+    this.user$ = userService.user$;
+  }
 
   public async ngOnInit() {
+    const authentication =
+      this.activatedRoute.snapshot.queryParams.authentication === 'true';
+
+    if (authentication) {
+      this.openDialogUser();
+      this.location.replaceState(location.pathname);
+    }
+
     await this.getCategory();
   }
 
@@ -79,8 +108,24 @@ export class MenuSearchComponent implements OnInit, AfterContentInit {
     this.mapService.moveToMap([event.latitude, event.longitude], { zoom: 17 });
   }
 
-  public openDialogUser(ref: IIcon, input?: HTMLInputElement, event?: Event) {
+  public openDialogUser(_?: any, __?: any, event?: Event) {
     event?.stopPropagation();
+
+    if (!this.userService.logged) {
+      return this.openDialogAuth();
+    }
+
+    this.dialogService.open(DialogUserComponent, {
+      panelClass: 'dialog-user-menu',
+    });
+  }
+
+  public openDialogAuth() {
+    const dialogRef = this.dialogService.open(DialogAuthComponent, {
+      maxWidth: 300,
+    });
+    // dialogRef.afterClosed().subscribe((res) => {
+    // });
   }
 
   public openDialogMobile() {

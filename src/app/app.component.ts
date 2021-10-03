@@ -19,9 +19,9 @@ export class AppComponent implements OnInit {
     theme(colors).createStyle();
 
     this.matIconRegistry.addSvgIcon(
-      `facebook`,
+      `google`,
       this.domSanitizer.bypassSecurityTrustResourceUrl(
-        `/assets/svgs/fecebook.svg`
+        `/assets/svgs/google.svg`
       )
     );
   }
