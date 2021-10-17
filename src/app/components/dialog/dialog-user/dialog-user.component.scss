@@ -25,6 +25,9 @@
 }
 
 .user-content {
+  & > mat-list > mat-list-item {
+    cursor: pointer;
+  }
   & > mat-list > mat-list-item mat-icon {
     opacity: 0.6;
     margin-right: 10px;

@@ -1,0 +1,22 @@
+.dialog-header {
+  & > .left > .title {
+    margin: 0;
+  }
+}
+
+mat-dialog-content {
+  overflow-x: hidden;
+
+  & > form > .block-map {
+    margin-bottom: 10px;
+  }
+  & > form > .block-map > .label {
+    font-weight: bold;
+    font-size: 16px;
+  }
+  & > form > ng-switch {
+    display: flex;
+    margin: 10px 0 5px;
+    font-weight: bold;
+  }
+}

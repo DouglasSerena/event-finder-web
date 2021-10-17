@@ -1,0 +1,86 @@
+<div class="header">
+  <h4 class="title">
+    Imagens do evento
+    <mat-icon
+      matTooltip="Arraste uma imagem para o top para torná la a imagem principal"
+    >
+      helper
+    </mat-icon>
+  </h4>
+  <button
+    mat-button
+    type="button"
+    color="primary"
+    [disabled]="loading"
+    (click)="file.click()"
+  >
+    <!-- [btn-loading]="loading" -->
+    <mat-icon>add</mat-icon>
+    ADICIONAR
+  </button>
+
+  <input
+    #file
+    hidden
+    multiple
+    type="file"
+    accept="image/*"
+    (change)="add(file.files)"
+  />
+</div>
+
+<ul
+  class="list"
+  cdkDropList
+  (cdkDropListDropped)="drop($event)"
+  *ngIf="control.value.length; else emptyTemplateRef"
+>
+  <li
+    cdkDrag
+    class="item mat-elevation-z3"
+    [cdkDragStartDelay]="isMobile ? 250 : 0"
+    *ngFor="let image of control.value; let index = index"
+  >
+    <img class="image" [src]="image" alt="" />
+
+    <mat-icon class="move">open_with</mat-icon>
+    <button class="menu" mat-icon-button>
+      <mat-icon>more_vertical</mat-icon>
+    </button>
+
+    <mat-menu #imageMenuRef xPosition="before">
+      <button mat-menu-item (click)="remove(index)">
+        <mat-icon>remove_circle_outline</mat-icon>Remove
+      </button>
+    </mat-menu>
+
+    <span class="primary" *ngIf="index === 0">
+      <span class="title">PRINCIPAL</span>
+      <mat-icon color="primary">check_circle</mat-icon>
+    </span>
+
+    <div class="event-form-drag-drop-placeholder" *cdkDragPlaceholder></div>
+    <div *cdkDragPreview class="event-form-drag-drop-preview mat-elevation-z3">
+      <img [src]="image" alt="preview" class="image" />
+    </div>
+  </li>
+</ul>
+
+<ng-template #emptyTemplateRef>
+  <div class="empty">
+    <h3 class="title">Não a imagens.</h3>
+    <p class="description">
+      Adicione alguma imagem do evento para ajudar as pessoas.
+    </p>
+    <button
+      type="button"
+      color="primary"
+      mat-stroked-button
+      [disabled]="loading"
+      (click)="file.click()"
+    >
+      <!-- [btn-loading]="loading" -->
+      Adiciona imagem
+    </button>
+  </div>
+</ng-template>

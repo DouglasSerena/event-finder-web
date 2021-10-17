@@ -1,0 +1,104 @@
+<header class="dialog-header" [class.-mobile]="isMobile">
+  <div class="left">
+    <button
+      *ngIf="isMobile"
+      mat-icon-button
+      class="btn -close"
+      mat-dialog-close
+    >
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <h2 class="title" (click)="save()">
+      {{ isUpdate ? "Atualizar" : "Criar" }} um evento
+    </h2>
+  </div>
+
+  <button
+    *ngIf="isMobile"
+    color="primary"
+    (click)="save()"
+    mat-raised-button
+    [disabled]="loading"
+  >
+    <!-- [btnLoading]="loading" -->
+    {{isUpdate ? "Atualizar" : 'Criar'}}
+  </button>
+</header>
+
+<mat-dialog-content [class.-mobile]="isMobile">
+  <form [formGroup]="form">
+    <!-- NOME -->
+    <ng-input formControlName="name" label="Nome"></ng-input>
+
+    <!-- DESCRIÇÃO -->
+    <ng-textarea formControlName="description" label="Descrição"></ng-textarea>
+
+    <!-- DATA -->
+    <ng-date formControlName="date" label="Data" [touchUi]="isMobile"></ng-date>
+
+    <!-- TIME -->
+    <ng-time formControlName="time" label="Hora"></ng-time>
+
+    <!-- TIPO DE EVENTO -->
+    <ng-select
+      keyValue="_id"
+      keyIcon="icon"
+      keyLabel="name"
+      [search]="true"
+      [multiple]="true"
+      [options]="categories"
+      formControlName="categoriesId"
+      label="Tipo de evento"
+    ></ng-select>
+
+    <!-- LOCALIZAÇÃO -->
+    <div class="block-map">
+      <label class="label">Selecionar o local</label>
+      <ng-maps formControlName="maps"></ng-maps>
+    </div>
+
+    <!-- TAGS HELPER -->
+    <ng-chips
+      label="Tags"
+      formControlName="helperTags"
+      help="Ajuda para localizar o evento na busca"
+    ></ng-chips>
+
+    <!-- EVENTO PAGO -->
+    <ng-switch formControlName="isPay" space="between" align="before">
+      Evento pago
+    </ng-switch>
+
+    <!-- VALOR -->
+    <ng-input
+      label="Valor"
+      type="currency"
+      formControlName="value"
+      *ngIf="controls.isPay.value"
+    ></ng-input>
+
+    <!-- TELEFONE -->
+    <ng-input formControlName="whatsapp" label="Telefone" type="tel"></ng-input>
+
+    <!-- EMAIL -->
+    <ng-input formControlName="email" label="Email" type="email"></ng-input>
+
+    <!-- IMAGES -->
+    <ef-event-form-images formControlName="images"></ef-event-form-images>
+
+    <input type="submit" hidden />
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions *ngIf="!isMobile" align="end">
+  <button color="primary" mat-dialog-close mat-button>Fechar</button>
+  <button
+    color="primary"
+    (click)="save()"
+    mat-raised-button
+    [disabled]="loading"
+  >
+    <!-- [btn-loading]="loading" -->
+    {{isUpdate ? "Atualizar" : 'Criar'}}
+  </button>
+</mat-dialog-actions>

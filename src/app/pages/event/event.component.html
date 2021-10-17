@@ -1,0 +1,66 @@
+<header class="dialog-header" [class.-mobile]="isMobile">
+  <div class="left">
+    <button mat-icon-button class="btn -close" mat-dialog-close>
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+
+    <h2 class="title">Meus eventos</h2>
+  </div>
+</header>
+
+<mat-dialog-content [class.-mobile]="isMobile">
+  <div class="loading" *ngIf="loading; else listTemplateRef">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <ng-template #listTemplateRef>
+    <mat-list *ngIf="myEvents.length; else emptyTemplateRef">
+      <mat-list-item class="mat-elevation-z3" *ngFor="let event of myEvents">
+        <img
+          mat-list-avatar
+          [src]="event.images[0] | else: '/assets/images/event-default.png'"
+        />
+        <h3 mat-line>{{ event.name }}</h3>
+        <p mat-line>{{ event.description }}</p>
+
+        <button
+          mat-icon-button
+          class="btn-tools"
+          [matMenuTriggerFor]="toolsMenuRef"
+        >
+          <mat-icon>more_vert</mat-icon>
+        </button>
+
+        <mat-menu #toolsMenuRef xPosition="before">
+          <button mat-menu-item (click)="openEventForm(event._id)">
+            <mat-icon>edit</mat-icon>editar
+          </button>
+          <button mat-menu-item (click)="openEventDelete(event._id)">
+            <mat-icon>delete</mat-icon>Deletar
+          </button>
+        </mat-menu>
+      </mat-list-item>
+    </mat-list>
+  </ng-template>
+
+  <ng-template #emptyTemplateRef>
+    <div class="empty">
+      <span class="icon">\(o_o)/</span>
+      <p class="description">Você não possui eventos</p>
+      <button mat-stroked-button color="primary" (click)="openEventForm()">
+        Cadastre agora
+      </button>
+    </div>
+  </ng-template>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button
+    (click)="openEventForm()"
+    class="btn-floating"
+    color="primart"
+    mat-fab
+  >
+    <mat-icon>add</mat-icon>
+  </button>
+</mat-dialog-actions>

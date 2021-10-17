@@ -9,6 +9,11 @@ import { IEvent } from 'src/app/interfaces/event.interface';
 })
 export class MapsService {
   onMarkerClick$ = new EventEmitter();
+  onNewPosition = new EventEmitter<{
+    latitude: number;
+    longitude: number;
+    radius: number;
+  }>();
 
   URL_API_MAPBOX = 'https://api.mapbox.com';
   TOKEN!: string;
@@ -30,13 +35,21 @@ export class MapsService {
       : 'mapbox://styles/mapbox/outdoors-v9';
 
     this.map = new mapboxgl.Map({
-      container: 'mapboxgl',
+      container: 'ef-mapboxgl',
       style: this.style,
       zoom: 3,
       center: this.center,
     });
 
     window.onresize = () => this.map.resize();
+    this.map.on('move', () => this.newPosition());
+    this.map.on('zoom', () => this.newPosition());
+  }
+
+  newPosition() {
+    const { lat, lng } = this.map.getCenter();
+    const zoom = this.map.getZoom();
+    console.log(zoom, this.map);
   }
 
   public getMyGeolocation(): Promise<number[]> {
@@ -62,13 +75,8 @@ export class MapsService {
       </div>
     `;
 
-    // const popup = new mapboxgl.Popup({
-    //   closeButton: false,
-    //   closeOnClick: false,
-    // }).setText('Test');
-
     this.markers[event._id] = new mapboxgl.Marker(template)
-      .setLngLat([event.latitude, event.longitude])
+      .setLngLat([event.longitude, event.latitude])
       .addTo(this.map);
 
     template.addEventListener('mouseup', () => {

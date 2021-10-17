@@ -33,7 +33,7 @@
   }
 }
 
-.dialog-content {
+mat-dialog-content {
   overflow: auto !important;
   max-height: calc(70vh - 82px) !important;
   &.-mobile {

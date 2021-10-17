@@ -6,18 +6,23 @@ import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   AuthJwtInterceptor,
+  ConfigUtils,
   GuardModule,
   HttpModule,
   NgTranslateModule,
-  NgUtilsConfig,
 } from '@douglas-serena/ng-utils';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { MatSpinner } from '@angular/material/progress-spinner';
 import { NgInputMaterialConfig } from '@douglas-serena/ng-inputs-material';
 import { environment } from 'src/environments/environment';
 import { StoreModule } from '@ngrx/store';
 import { UserModule } from './stores/user/user.module';
+import { ContainerModule } from './container/container.module';
+import { DateAdapter, MatNativeDateModule } from '@angular/material/core';
+import { MatDialogModule } from '@angular/material/dialog';
 
-NgUtilsConfig.set({
+ConfigUtils.set({
+  directives: { buttonLoading: { componentLoading: MatSpinner as any } },
   services: {
     auth: { redirectLogout: ['/landing'] },
     http: { apiUrl: environment.URL_API },
@@ -26,7 +31,7 @@ NgUtilsConfig.set({
 });
 NgInputMaterialConfig.set({
   fields: {
-    map: { keyMapBox: environment.TOKEN_MAPBOX },
+    maps: { keyMapBox: environment.TOKEN_MAPBOX },
   },
 });
 
@@ -38,8 +43,11 @@ NgInputMaterialConfig.set({
     HttpModule,
     GuardModule,
     RouterModule,
+    MatDialogModule,
+    ContainerModule,
     HttpClientModule,
     NgTranslateModule,
+    MatNativeDateModule,
     StoreModule.forRoot({}),
     BrowserAnimationsModule,
   ],

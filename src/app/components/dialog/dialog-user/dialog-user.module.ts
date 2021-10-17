@@ -7,13 +7,18 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { MatRippleModule } from '@angular/material/core';
+import { RouterModule } from '@angular/router';
+import { EventModule } from 'src/app/pages/event/event.module';
 
 @NgModule({
   imports: [
+    EventModule,
     CommonModule,
+    RouterModule,
     MatIconModule,
     MatListModule,
     MatRippleModule,
+    MatDialogModule,
     MatButtonModule,
     MatDialogModule,
     MatDividerModule,

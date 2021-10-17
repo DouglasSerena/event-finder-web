@@ -11,13 +11,13 @@
 
   <mat-list>
     <!-- ADICIONAR EVENTO -->
-    <mat-list-item matRipple role="button">
+    <mat-list-item matRipple role="button" (click)="openEventForm()">
       <mat-icon mat-list-icon>add_location</mat-icon>
       Adicionar evento
     </mat-list-item>
 
     <!-- LISTAR EVENTOS -->
-    <mat-list-item matRipple role="button">
+    <mat-list-item matRipple role="button" [routerLink]="['/event']">
       <mat-icon mat-list-icon>event</mat-icon>
       Seus eventos
     </mat-list-item>

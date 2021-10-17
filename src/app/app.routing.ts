@@ -1,18 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ContainerComponent } from './container/container.component';
 
 const routes: Routes = [
   {
     path: '',
-    pathMatch: 'full',
-    redirectTo: 'landing',
-  },
-  {
-    path: 'landing',
-    loadChildren: () =>
-      import('./pages/landing/landing.module').then(
-        (landing) => landing.LandingModule
-      ),
+    component: ContainerComponent,
+    children: [
+      {
+        path: 'event',
+        loadChildren: () =>
+          import('./pages/event/event.module').then(
+            (event) => event.EventModule
+          ),
+      },
+    ],
   },
   {
     path: 'auth/confirm',

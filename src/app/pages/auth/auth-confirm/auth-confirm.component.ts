@@ -16,7 +16,7 @@ export class AuthConfirmComponent implements OnInit {
   ngOnInit() {
     const { token } = this.activatedRoute.snapshot.queryParams;
     this.userService.signIn(token);
-    this.router.navigate(['/landing'], {
+    this.router.navigate(['/'], {
       queryParams: {
         authentication: true,
       },

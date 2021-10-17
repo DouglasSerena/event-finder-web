@@ -6,18 +6,9 @@ import {
   OnInit,
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import {
-  ActivatedRoute,
-  ActivatedRouteSnapshot,
-  Router,
-} from '@angular/router';
-import { IIcon } from '@douglas-serena/ng-inputs-material';
-import {
-  AuthJwtService,
-  dialogConfig,
-  ScreenPointsService,
-} from '@douglas-serena/ng-utils';
-import { debounce, handleTry } from '@douglas-serena/utils';
+import { ActivatedRoute } from '@angular/router';
+import { fullscreenDialog } from '@douglas-serena/ng-utils';
+import { debounce, Global, handleTry } from '@douglas-serena/utils';
 import { Observable } from 'rxjs';
 import { ICategory } from 'src/app/interfaces/category.interface';
 import { IEvent } from 'src/app/interfaces/event.interface';
@@ -45,7 +36,7 @@ export class MenuSearchComponent implements OnInit, AfterContentInit {
   public user$: Observable<IUser>;
 
   public get isMobile() {
-    return this.screenPointsService.isMobile;
+    return Global.isMobile;
   }
 
   constructor(
@@ -56,8 +47,7 @@ export class MenuSearchComponent implements OnInit, AfterContentInit {
     private eventService: EventService,
     private activatedRoute: ActivatedRoute,
     private categoryService: CategoryService,
-    private changeDetectorRef: ChangeDetectorRef,
-    private screenPointsService: ScreenPointsService
+    private changeDetectorRef: ChangeDetectorRef
   ) {
     this.user$ = userService.user$;
   }
@@ -105,7 +95,7 @@ export class MenuSearchComponent implements OnInit, AfterContentInit {
   }
 
   public moveToEventMap(event: IEvent) {
-    this.mapService.moveToMap([event.latitude, event.longitude], { zoom: 17 });
+    this.mapService.moveToMap([event.longitude, event.latitude], { zoom: 17 });
   }
 
   public openDialogUser(_?: any, __?: any, event?: Event) {
@@ -117,22 +107,21 @@ export class MenuSearchComponent implements OnInit, AfterContentInit {
 
     this.dialogService.open(DialogUserComponent, {
       panelClass: 'dialog-user-menu',
+      minWidth: 300,
     });
   }
 
   public openDialogAuth() {
-    const dialogRef = this.dialogService.open(DialogAuthComponent, {
+    this.dialogService.open(DialogAuthComponent, {
       maxWidth: 300,
     });
-    // dialogRef.afterClosed().subscribe((res) => {
-    // });
   }
 
   public openDialogMobile() {
     if (this.isMobile) {
       const dialogRef = this.dialogService.open(
         MenuSearchMobileComponent,
-        dialogConfig('mobile')
+        Global.isMobile ? fullscreenDialog : {}
       );
       dialogRef.afterClosed().subscribe((res) => {
         if (res) {

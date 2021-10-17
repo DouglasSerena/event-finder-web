@@ -1,0 +1,29 @@
+<div class="dialog-header">
+  <span class="left">
+    <h2 class="title">{{ config.title }}</h2>
+  </span>
+</div>
+
+<mat-dialog-content>
+  <p class="description">{{ config.description }}</p>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <!-- BTN FECHAR -->
+  <button mat-button type="button" color="primary" [mat-dialog-close]="false">
+    Fechar
+  </button>
+
+  <!-- BTN CONFIRMAR -->
+  <button
+    type="button"
+    mat-raised-button
+    [mat-dialog-close]="true"
+    [color]="config.btnConfirm.color"
+  >
+    <mat-icon *ngIf="config.btnConfirm.icon">{{
+      config.btnConfirm.icon
+    }}</mat-icon>
+    {{ config.btnConfirm.text }}
+  </button>
+</mat-dialog-actions>

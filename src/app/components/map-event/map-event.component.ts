@@ -21,7 +21,6 @@ export class MapEventComponent implements AfterViewInit {
     private translateService: TranslateService
   ) {
     this.markerClick = this.mapsService.onMarkerClick$;
-    this.markerClick.subscribe(console.log);
   }
 
   async ngAfterViewInit(): Promise<void> {
