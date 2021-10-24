@@ -11,6 +11,6 @@ export class CategoryService {
   constructor(private httpService: HttpService) {}
 
   get(): Observable<IHttpResponse<ICategory[]>> {
-    return this.httpService.get('/category');
+    return this.httpService.get('/category') as any;
   }
 }

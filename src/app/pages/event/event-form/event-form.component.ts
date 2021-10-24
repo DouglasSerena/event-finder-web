@@ -15,9 +15,10 @@ import { EventService } from 'src/app/services/event.service';
   styleUrls: ['./event-form.component.scss'],
 })
 export class EventFormComponent extends FormTemplate implements OnInit {
-  loading = true;
-  isUpdate = false;
-  categories: ICategory[] = [];
+  public loading = true;
+  public isUpdate = false;
+  public categories: ICategory[] = [];
+  public currentDate = new Date();
 
   get isMobile() {
     return Global.isMobile;
@@ -40,7 +41,7 @@ export class EventFormComponent extends FormTemplate implements OnInit {
       name: ['', [Validators.required]],
       description: [''],
       date: ['', [Validators.required]],
-      time: ['', [Validators.required]],
+      time: [dayjs().format('HH:mm:ss'), [Validators.required]],
       images: [[]],
       helperTags: [[]],
       value: [0],
@@ -58,9 +59,9 @@ export class EventFormComponent extends FormTemplate implements OnInit {
 
     if (this.eventId) {
       this.isUpdate = true;
-      const [data] = await this.handleHttp(
-        this.eventService.getById(this.eventId)
-      );
+      const [data] = (await this.handleHttp(
+        this.eventService.getById(this.eventId) as any
+      )) as any;
       if (data) {
         const event = data.data;
         this.form.patchValue({
@@ -75,7 +76,9 @@ export class EventFormComponent extends FormTemplate implements OnInit {
   }
 
   async getCategories() {
-    const [data] = await this.handleHttp(this.categoryService.get());
+    const [data] = (await this.handleHttp(
+      this.categoryService.get() as any
+    )) as any;
     if (data) {
       this.categories = data.data;
     }
@@ -110,9 +113,9 @@ export class EventFormComponent extends FormTemplate implements OnInit {
         }
       }
 
-      const [_, error] = await this.handleHttp(
-        this.eventService.save(value, this.eventId)
-      );
+      const [_, error] = (await this.handleHttp(
+        this.eventService.save(value, this.eventId) as any
+      )) as any;
       if (!error) {
         this.dialogRef.close();
       } else {

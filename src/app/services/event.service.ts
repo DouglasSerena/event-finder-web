@@ -23,32 +23,41 @@ export class EventService {
       params: {
         query: text,
       },
-    });
+    }) as any;
   }
 
   save(data: any, id?: string): Observable<IHttpResponse<IEvent[]>> {
     if (id) {
-      return this.httpService.put(`/event/${id}`, data, id);
+      return this.httpService.put(`/event/${id}`, data, id) as any;
     }
-    return this.httpService.post(`/event`, data);
+    return this.httpService.post(`/event`, data) as any;
   }
 
   delete(eventId: string): Observable<IHttpResponse<void>> {
-    return this.httpService.delete(`/event`, eventId);
+    return this.httpService.delete(`/event`, eventId) as any;
   }
 
   getMy(): Observable<IHttpResponse<IEvent[]>> {
     return this.httpService.get(
       `/event/user/${this.authJwtService.tokenDecode.id}`
-    );
+    ) as any;
+  }
+
+  getByLocation(
+    latitude: number,
+    longitude: number
+  ): Observable<IHttpResponse<IEvent[]>> {
+    return this.httpService.get(
+      `/event/location/${latitude}/${longitude}`
+    ) as any;
   }
 
   getAll(): Observable<IHttpResponse<IEvent[]>> {
-    return this.httpService.get('/event');
+    return this.httpService.get('/event') as any;
   }
 
   getById(id: string): Observable<IHttpResponse<IEvent>> {
-    return this.httpService.get('/event', id);
+    return this.httpService.get('/event', id) as any;
   }
 
   async upload(images: string[]): Promise<IHttpResponse<{ url: string }[]>> {

@@ -1,9 +1,12 @@
 import mapboxgl from 'mapbox-gl';
 import { EventEmitter, Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { theme } from '@douglas-serena/utils';
 import { IEvent } from 'src/app/interfaces/event.interface';
+import { EventService } from 'src/app/services/event.service';
+import { Global, handleTry } from '@douglas-serena/utils';
+import { Utils, Debounce } from '@douglas-serena/decorators';
 
+@Utils('ngOnDestroy')
 @Injectable({
   providedIn: 'root',
 })
@@ -24,13 +27,13 @@ export class MapsService {
   center: mapboxgl.LngLatLike = [0, 0];
   style!: string;
 
-  constructor() {
+  constructor(private eventService: EventService) {
     this.TOKEN = environment.TOKEN_MAPBOX;
     mapboxgl.accessToken = this.TOKEN;
   }
 
   public async buildMap(): Promise<void> {
-    this.style = theme().isDark
+    this.style = Global.isDark
       ? 'mapbox://styles/mapbox/dark-v10'
       : 'mapbox://styles/mapbox/outdoors-v9';
 
@@ -46,10 +49,28 @@ export class MapsService {
     this.map.on('zoom', () => this.newPosition());
   }
 
-  newPosition() {
+  @Debounce(100)
+  async newPosition() {
     const { lat, lng } = this.map.getCenter();
     const zoom = this.map.getZoom();
-    console.log(zoom, this.map);
+    const markers = [];
+
+    if (zoom <= 14) {
+      const [data] = await handleTry(this.eventService.getByLocation(lat, lng));
+      if (data) {
+        for (const event of data.data) {
+          this.addMarker(event);
+          markers.push(event._id);
+        }
+      }
+    }
+
+    for (const marker in this.markers) {
+      if (!markers.includes(marker)) {
+        this.markers[marker].remove();
+        delete this.markers[marker];
+      }
+    }
   }
 
   public getMyGeolocation(): Promise<number[]> {

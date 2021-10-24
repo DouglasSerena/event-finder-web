@@ -16,7 +16,6 @@ export class MapEventComponent implements AfterViewInit {
 
   constructor(
     private mapsService: MapsService,
-    private eventService: EventService,
     private snackbarService: MatSnackBar,
     private translateService: TranslateService
   ) {
@@ -26,13 +25,6 @@ export class MapEventComponent implements AfterViewInit {
   async ngAfterViewInit(): Promise<void> {
     await this.mapsService.buildMap();
     await this.onMoveMyLocation();
-
-    const [data] = await handleTry(this.eventService.getAll());
-    if (data) {
-      for (const event of data.data) {
-        this.mapsService.addMarker(event);
-      }
-    }
   }
 
   public async onMoveMyLocation(): Promise<void> {

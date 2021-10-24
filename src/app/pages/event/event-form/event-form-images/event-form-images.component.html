@@ -13,8 +13,8 @@
     color="primary"
     [disabled]="loading"
     (click)="file.click()"
+    [btn-loading]="loading"
   >
-    <!-- [btn-loading]="loading" -->
     <mat-icon>add</mat-icon>
     ADICIONAR
   </button>
@@ -78,8 +78,8 @@
       mat-stroked-button
       [disabled]="loading"
       (click)="file.click()"
+      [btn-loading]="loading"
     >
-      <!-- [btn-loading]="loading" -->
       Adiciona imagem
     </button>
   </div>

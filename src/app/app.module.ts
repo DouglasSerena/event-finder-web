@@ -18,13 +18,13 @@ import { environment } from 'src/environments/environment';
 import { StoreModule } from '@ngrx/store';
 import { UserModule } from './stores/user/user.module';
 import { ContainerModule } from './container/container.module';
-import { DateAdapter, MatNativeDateModule } from '@angular/material/core';
+import { MatNativeDateModule } from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog';
 
 ConfigUtils.set({
   directives: { buttonLoading: { componentLoading: MatSpinner as any } },
   services: {
-    auth: { redirectLogout: ['/landing'] },
+    auth: { redirectLogout: ['/'] },
     http: { apiUrl: environment.URL_API },
     translate: { language: { default: 'pt-BR' } },
   },

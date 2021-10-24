@@ -21,7 +21,7 @@
     [disabled]="loading"
   >
     <!-- [btnLoading]="loading" -->
-    {{isUpdate ? "Atualizar" : 'Criar'}}
+    {{ isUpdate ? "Atualizar" : "Criar" }}
   </button>
 </header>
 
@@ -34,7 +34,12 @@
     <ng-textarea formControlName="description" label="Descrição"></ng-textarea>
 
     <!-- DATA -->
-    <ng-date formControlName="date" label="Data" [touchUi]="isMobile"></ng-date>
+    <ng-date
+      [min]="currentDate"
+      formControlName="date"
+      label="Data"
+      [touchUi]="isMobile"
+    ></ng-date>
 
     <!-- TIME -->
     <ng-time formControlName="time" label="Hora"></ng-time>
@@ -97,8 +102,8 @@
     (click)="save()"
     mat-raised-button
     [disabled]="loading"
+    [btn-loading]="loading"
   >
-    <!-- [btn-loading]="loading" -->
-    {{isUpdate ? "Atualizar" : 'Criar'}}
+    {{ isUpdate ? "Atualizar" : "Criar" }}
   </button>
 </mat-dialog-actions>
