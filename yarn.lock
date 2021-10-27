@@ -1205,10 +1205,10 @@
     "@douglas-serena/utils" "^1.4.11"
     rxjs "^7.3.1"
 
-"@douglas-serena/decorators@^1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@douglas-serena/decorators/-/decorators-1.1.1.tgz#6594d4b48e3af95991bf6a9e10424a03f0c35741"
-  integrity sha512-hHmkgSU1mSPTNg+hs0gn6OXv1BYiS8nYaHXZU3tSKUfUF+XhsI1rZCdvD/6DUJoVAzMn18Q7qgNesRjTzIKELA==
+"@douglas-serena/decorators@^1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@douglas-serena/decorators/-/decorators-1.1.2.tgz#aff8c92cddd7c95b74b942c7c56bdce7274249c5"
+  integrity sha512-woPS0VO0PjuondD64E18927v8osJdtBuL7EPjk5tWYKewb/c4nRb8VgEwecRPuLbi6Qx7YhhnaUkjaNO48K8Ng==
   dependencies:
     "@douglas-serena/utils" "^1.4.13"
     rxjs "^7.3.1"
@@ -1226,10 +1226,10 @@
     tinycolor2 "^1.4.2"
     tslib "^2.1.0"
 
-"@douglas-serena/ng-utils@^2.0.16":
-  version "2.0.16"
-  resolved "https://registry.yarnpkg.com/@douglas-serena/ng-utils/-/ng-utils-2.0.16.tgz#b137af5f7be98cc9bde53ed923d779ae10fde287"
-  integrity sha512-Og33FW5mGsHuTPM/1XYVd5Kfgvz0zZp4x4BC0phon1DiMvX9J6xloVT0ByrC1rjqFAAItopPScMI+9ijzGAx6g==
+"@douglas-serena/ng-utils@^2.0.17":
+  version "2.0.17"
+  resolved "https://registry.yarnpkg.com/@douglas-serena/ng-utils/-/ng-utils-2.0.17.tgz#ad33b00b88f490edab0dec2e0a30846beb19a79c"
+  integrity sha512-wNeBU+ZEVy2YZCBr1yaNdy9aEHgEHtLnbczmd7JWaVgqdcmr+5VHpjsgI5yzHGznFJSTaiHugJVkcqlKpmTCnw==
   dependencies:
     "@douglas-serena/decorators" "^1.0.11"
     "@douglas-serena/utils" "^1.4.13"
@@ -1255,6 +1255,19 @@
   version "1.4.13"
   resolved "https://registry.yarnpkg.com/@douglas-serena/utils/-/utils-1.4.13.tgz#ccf5194053557868e315d510292f642bc20fb18e"
   integrity sha512-8lNwuG0+7CJUeCw3B5WHu9IinkwGQnEl5qPYMleGXuNeS3fBPyGEdk5DBtzMGArjU1+xQmYj+Vv9GIZoGKy8Ww==
+  dependencies:
+    "@babel/runtime-corejs2" "^7.15.4"
+    dayjs "^1.10.4"
+    imask "^6.1.0"
+    inputmask "^5.0.6"
+    rxjs "^6.6.7"
+    simple-mask-money "^3.0.1"
+    vanilla-masker "^1.2.0"
+
+"@douglas-serena/utils@^1.5.4":
+  version "1.5.4"
+  resolved "https://registry.yarnpkg.com/@douglas-serena/utils/-/utils-1.5.4.tgz#b4773ad3d7054eef4a2c29e359bcca220beb1c46"
+  integrity sha512-J0WaXlPmNS0RZn4DngTg2VTxsVyayZVFFynH6T6bSlGfGG0vjhL8bNmHBPymKqCKi+HZddgwrkuDR5sQR47MaQ==
   dependencies:
     "@babel/runtime-corejs2" "^7.15.4"
     dayjs "^1.10.4"

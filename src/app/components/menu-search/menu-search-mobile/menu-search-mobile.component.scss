@@ -1,4 +1,9 @@
 .dialog-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+
   display: flex;
   padding: 10px;
   align-items: center;
@@ -21,9 +26,9 @@
 
   mat-divider {
     position: absolute;
-    bottom: -55px;
-    left: 0;
-    right: 0;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
   }
 }
 
