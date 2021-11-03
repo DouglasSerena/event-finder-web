@@ -37,7 +37,7 @@
   <mat-divider></mat-divider>
 
   <div class="actions">
-    <a class="btn" mat-button>
+    <a class="btn" mat-button (click)="onSaveCalendar()">
       <mat-icon>schedule</mat-icon>
       Agendar
     </a>
@@ -80,6 +80,12 @@
         {{ event?.date | date: "MMM d, y, h:mm:ss a" }}
       </h3>
       <p mat-line class="description">{{ event?.date | relativeTime }}</p>
+    </mat-list-item>
+    <mat-list-item class="item -value" *ngIf="event?.value">
+      <mat-icon mat-list-icon>attach_money</mat-icon>
+      <h3 mat-line class="title">
+        {{ event?.value | currency: "BRL" }}
+      </h3>
     </mat-list-item>
   </mat-list>
 

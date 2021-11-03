@@ -61,6 +61,18 @@ export class EventDetailsComponent implements OnInit, OnDestroy {
     );
   }
 
+  public onSaveCalendar() {
+    window.open(
+      `https://calendar.google.com/calendar/u/0/r/eventedit?text=${
+        this.event.name
+      }&dates=${dayjs(
+        this.event.date
+      ).format()}&details=Compartilhe:&location=${this.concatCoords(
+        this.event
+      )}&trp=false&sprop=website:${encodeURI(location.href)}`
+    );
+  }
+
   public concatCoords(event: IEvent) {
     return `${event.latitude},${event.longitude}`;
   }

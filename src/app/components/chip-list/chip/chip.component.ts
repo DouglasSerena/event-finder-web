@@ -18,6 +18,7 @@ export class ChipComponent implements OnInit {
   onSelected() {
     if (!this.disabled && !this.disabledSelected) {
       this.selected = !this.selected;
+      this.selectedChange.emit(this.selected);
     }
   }
 }

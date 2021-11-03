@@ -3,6 +3,7 @@ export interface IEvent {
   name: string;
   date: string;
   icon: string;
+  value: string;
   description: string;
   images: string[];
   latitude: number;
