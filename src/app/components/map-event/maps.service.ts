@@ -5,6 +5,9 @@ import { IEvent } from 'src/app/interfaces/event.interface';
 import { EventService } from 'src/app/services/event.service';
 import { Global, handleTry } from '@douglas-serena/utils';
 import { Utils, Debounce } from '@douglas-serena/decorators';
+import { ICategory } from 'src/app/stores/category/interfaces/category.interface';
+import { FEATURE_KEY_CATEGORY } from 'src/app/stores/category/category.reducer';
+import { Store } from '@ngrx/store';
 
 @Utils('ngOnDestroy')
 @Injectable({
@@ -27,7 +30,10 @@ export class MapsService {
   center: mapboxgl.LngLatLike = [0, 0];
   style!: string;
 
-  constructor(private eventService: EventService) {
+  constructor(
+    private eventService: EventService,
+    private store: Store<{ [FEATURE_KEY_CATEGORY]: ICategory[] }>
+  ) {
     this.TOKEN = environment.TOKEN_MAPBOX;
     mapboxgl.accessToken = this.TOKEN;
   }
@@ -44,13 +50,21 @@ export class MapsService {
       center: this.center,
     });
 
+    this.store.select('category').subscribe(() => {
+      this.findEvents();
+    });
+
     window.onresize = () => this.map.resize();
-    this.map.on('move', () => this.newPosition());
-    this.map.on('zoom', () => this.newPosition());
+    this.map.on('move', () => this.findEvents());
+    this.map.on('zoom', () => this.findEvents());
+
+    setInterval(() => {
+      this.findEvents();
+    }, 3000);
   }
 
   @Debounce(100)
-  async newPosition() {
+  async findEvents() {
     const { lat, lng } = this.map.getCenter();
     const zoom = this.map.getZoom();
     const markers = [];

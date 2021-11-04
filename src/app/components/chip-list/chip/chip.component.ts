@@ -6,7 +6,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./chip.component.scss'],
 })
 export class ChipComponent implements OnInit {
-  @Input() selected = false;
+  @Input() selected?: boolean = false;
   @Input() disabled = false;
   @Input() disabledSelected = false;
   @Output() selectedChange = new EventEmitter();

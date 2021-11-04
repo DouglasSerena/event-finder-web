@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from '@douglas-serena/ng-utils';
 import { Observable } from 'rxjs';
-import { ICategory } from '../interfaces/category.interface';
-import { IHttpResponse } from '../interfaces/http-response.interface';
+import { ICategory } from './interfaces/category.interface';
+import { IHttpResponse } from '../../interfaces/http-response.interface';
 
 @Injectable({
   providedIn: 'root',

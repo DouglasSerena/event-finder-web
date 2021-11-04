@@ -1,10 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { debounce, handleTry, isFill } from '@douglas-serena/utils';
-import { ICategory } from 'src/app/interfaces/category.interface';
+import { ICategory } from 'src/app/stores/category/interfaces/category.interface';
 import { IEvent } from 'src/app/interfaces/event.interface';
-import { CategoryService } from 'src/app/services/category.service';
+import { CategoryService } from 'src/app/stores/category/category.service';
 import { EventService } from 'src/app/services/event.service';
+import { Store } from '@ngrx/store';
+import { FEATURE_KEY_CATEGORY } from 'src/app/stores/category/category.reducer';
+import {
+  categorySelect,
+  categoryUnselect,
+} from 'src/app/stores/category/category.actions';
 
 @Component({
   selector: 'ef-menu-search-mobile',
@@ -18,22 +24,23 @@ export class MenuSearchMobileComponent implements OnInit {
 
   constructor(
     private eventService: EventService,
-    private categoryService: CategoryService,
-    private dialogRef: MatDialogRef<MenuSearchMobileComponent>,
+    private store: Store<{ [FEATURE_KEY_CATEGORY]: ICategory[] }>
   ) {}
 
   async ngOnInit() {
-    await this.getCategory();
+    this.store.select('category').subscribe((categories) => {
+      this.categories = categories;
+    });
   }
-
-  async getCategory() {
-    const [data, error] = await handleTry(this.categoryService.get());
-    if (!error) {
-      this.categories = data.data;
+  public onChangeCategory(category: ICategory) {
+    if (category.select) {
+      this.store.dispatch(categorySelect({ category }));
+    } else {
+      this.store.dispatch(categoryUnselect({ category }));
     }
   }
 
-  search(value: string) {
+  public search(value: string) {
     this.debounce.run(async () => {
       if (isFill(value)) {
         const [data, error] = await handleTry(this.eventService.search(value));

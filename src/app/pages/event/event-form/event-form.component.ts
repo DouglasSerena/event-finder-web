@@ -5,8 +5,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthJwtService, FormTemplate } from '@douglas-serena/ng-utils';
 import { contains, Global } from '@douglas-serena/utils';
 import dayjs from 'dayjs';
-import { ICategory } from 'src/app/interfaces/category.interface';
-import { CategoryService } from 'src/app/services/category.service';
+import { ICategory } from 'src/app/stores/category/interfaces/category.interface';
+import { CategoryService } from 'src/app/stores/category/category.service';
 import { EventService } from 'src/app/services/event.service';
 
 @Component({

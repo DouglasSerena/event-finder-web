@@ -20,6 +20,7 @@ import { UserModule } from './stores/user/user.module';
 import { ContainerModule } from './container/container.module';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog';
+import { CategoryModule } from './stores/category/category.module';
 
 ConfigUtils.set({
   directives: { buttonLoading: { componentLoading: MatSpinner as any } },
@@ -43,12 +44,23 @@ NgInputMaterialConfig.set({
     HttpModule,
     GuardModule,
     RouterModule,
+    CategoryModule,
     MatDialogModule,
     ContainerModule,
     HttpClientModule,
     NgTranslateModule,
     MatNativeDateModule,
-    StoreModule.forRoot({}),
+    StoreModule.forRoot(
+      {},
+      {
+        runtimeChecks: {
+          strictActionImmutability: false,
+          strictActionSerializability: false,
+          strictStateImmutability: false,
+          strictStateSerializability: false,
+        },
+      }
+    ),
     BrowserAnimationsModule,
   ],
   providers: [

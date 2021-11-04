@@ -10,9 +10,9 @@ import { ActivatedRoute } from '@angular/router';
 import { fullscreenDialog } from '@douglas-serena/ng-utils';
 import { debounce, Global, handleTry } from '@douglas-serena/utils';
 import { Observable } from 'rxjs';
-import { ICategory } from 'src/app/interfaces/category.interface';
+import { ICategory } from 'src/app/stores/category/interfaces/category.interface';
 import { IEvent } from 'src/app/interfaces/event.interface';
-import { CategoryService } from 'src/app/services/category.service';
+import { CategoryService } from 'src/app/stores/category/category.service';
 import { EventService } from 'src/app/services/event.service';
 import { IUser } from 'src/app/stores/user/interfaces/user.interface';
 import { UserService } from 'src/app/stores/user/user.service';
@@ -20,6 +20,13 @@ import { DialogAuthComponent } from '../dialog/dialog-auth/dialog-auth.component
 import { DialogUserComponent } from '../dialog/dialog-user/dialog-user.component';
 import { MapsService } from '../map-event/maps.service';
 import { MenuSearchMobileComponent } from './menu-search-mobile/menu-search-mobile.component';
+import { Store } from '@ngrx/store';
+import { FEATURE_KEY_CATEGORY } from 'src/app/stores/category/category.reducer';
+import {
+  categorySelect,
+  categoryStart,
+  categoryUnselect,
+} from 'src/app/stores/category/category.actions';
 
 @Component({
   selector: 'ef-menu-search',
@@ -47,9 +54,13 @@ export class MenuSearchComponent implements OnInit, AfterContentInit {
     private eventService: EventService,
     private activatedRoute: ActivatedRoute,
     private categoryService: CategoryService,
-    private changeDetectorRef: ChangeDetectorRef
+    private changeDetectorRef: ChangeDetectorRef,
+    private store: Store<{ [FEATURE_KEY_CATEGORY]: ICategory[] }>
   ) {
     this.user$ = userService.user$;
+    store.select('category').subscribe((categories) => {
+      this.categories = categories;
+    });
   }
 
   public async ngOnInit() {
@@ -71,7 +82,7 @@ export class MenuSearchComponent implements OnInit, AfterContentInit {
   public async getCategory() {
     const [data, error] = await handleTry(this.categoryService.get());
     if (!error) {
-      this.categories = data.data;
+      this.store.dispatch(categoryStart({ categories: data.data }));
     }
   }
 
@@ -96,6 +107,14 @@ export class MenuSearchComponent implements OnInit, AfterContentInit {
 
   public moveToEventMap(event: IEvent) {
     this.mapService.moveToMap([event.longitude, event.latitude], { zoom: 17 });
+  }
+
+  public onChangeCategory(category: ICategory) {
+    if (category.select) {
+      this.store.dispatch(categorySelect({ category }));
+    } else {
+      this.store.dispatch(categoryUnselect({ category }));
+    }
   }
 
   public openDialogUser(_?: any, __?: any, event?: Event) {
