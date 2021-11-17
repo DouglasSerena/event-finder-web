@@ -72,17 +72,15 @@ export class MapsService {
     if (zoom <= 14) {
       const [data] = await handleTry(this.eventService.getByLocation(lat, lng));
       if (data) {
+        for (const marker in this.markers) {
+          this.markers[marker].remove();
+          delete this.markers[marker];
+        }
+
         for (const event of data.data) {
           this.addMarker(event);
           markers.push(event._id);
         }
-      }
-    }
-
-    for (const marker in this.markers) {
-      if (!markers.includes(marker)) {
-        this.markers[marker].remove();
-        delete this.markers[marker];
       }
     }
   }
